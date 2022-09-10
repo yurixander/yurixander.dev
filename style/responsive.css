@@ -1,0 +1,24 @@
+/* Phones */
+@media screen and (max-width: 599px) {
+  html {
+    font-size: 8px;
+    scroll-snap-type: y none;
+  }
+}
+
+/* Tablet portrait */
+@media screen and (min-width: 600px) {
+
+}
+
+/* Tablet landscape */
+@media screen and (min-width: 900px) {
+  html {
+
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 1280px) {
+  /**/
+}
