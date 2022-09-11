@@ -1,7 +1,7 @@
 const consts = {
   cursorSize: 20,
   emailRegex: /^[^@]+@[^@]+\.[^@]+$/,
-  confirmationRegex: /(y|n)/,
+  confirmationRegex: /^(y|n)$/,
   terminalCommands: [
     ["help", "Shows this help list."],
     ["clear", "Clear the console."],
@@ -108,7 +108,7 @@ window.addEventListener("load", () => {
     })
   }
 
-  const defaultCommandHandler = (_commandString, name, args) => {
+  const defaultCommandHandler = (_commandString, name, _args) => {
     switch (name) {
       case "help": {
         for (const [name, helpMessage] of consts.terminalCommands) {
