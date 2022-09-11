@@ -1,20 +1,29 @@
 /* Phones */
-@media screen and (max-width: 599px) {
-  html {
+/* @media screen and (max-width: 599px) { */
+  /* html {
     font-size: 8px;
     scroll-snap-type: y none;
-  }
-}
+    display: inherit;
+  } */
+/* } */
 
 /* Tablet portrait */
-@media screen and (min-width: 600px) {
+/* @media screen and (max-width: 600px) { */
 
-}
+/* } */
 
 /* Tablet landscape */
-@media screen and (min-width: 900px) {
+@media screen and (max-width: 900px) {
   html {
 
+  }
+
+  .guide {
+    display: none;
+  }
+
+  #cursor {
+    display: none !important;
   }
 }
 

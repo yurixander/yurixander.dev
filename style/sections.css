@@ -1,7 +1,7 @@
 section#hero {
   background-color: var(--color-pastel);
   padding-top: 15rem;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 section#hero > .container {
@@ -17,7 +17,6 @@ section#hero > .container > .subtitle {
 section#hero > .container  > .subtitle > .caret {
   display: inline-block;
   height: 1.5ch;
-  vertical-align: center;
   transform: translateY(10px);
   width: 1.5rem;
   border: 3px solid var(--color-black);
@@ -27,6 +26,7 @@ section#hero > .container  > .subtitle > .caret {
 
 section#hero .obj-hero {
   margin-top: 5rem;
+  max-height: 100%;
 }
 
 section#about {
@@ -119,10 +119,9 @@ section#contact .obj-contact {
   z-index: 1;
   transform-origin: center;
 }
-
 .terminal:focus-within {
   opacity: 0.9;
-  transform: scale(1.01);
+  transform: scale(1.02);
 }
 
 .terminal .title-bar {

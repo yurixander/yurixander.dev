@@ -48,16 +48,17 @@ html, body {
   /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
   font-family: "Space Grotesk", sans-serif;
   user-select: none;
+  overflow-x: hidden;
 }
 
 html {
   height: 100vh;
-  scroll-snap-type: y mandatory;
+  /* FIXME: Buggy for reading content in sections. Find an alternative or implement using JS. */
+  /* scroll-snap-type: y mandatory; */
 }
 
 body {
   transition: filter 0.2s ease;
-  overflow-x: hidden;
 }
 
 body.blur {
@@ -65,7 +66,7 @@ body.blur {
 }
 
 nav {
-  position: sticky;
+  /* position: sticky; */
   top: 0;
   background-color: var(--color-pastel);
   z-index: 1;
