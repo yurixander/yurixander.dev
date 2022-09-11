@@ -62,7 +62,7 @@ body {
 }
 
 body.blur {
-  /* filter: blur(8px); */
+  filter: blur(8px);
 }
 
 nav {
@@ -261,6 +261,38 @@ button.special {
   animation: rainbow-text 0.8s ease infinite;
 }
 
+.remarks {
+  text-align: center;
+  /* FIXME: Taking the whole space instead of being centered in the middle. Likely caused by being display flex via class names. */
+  margin: 0 auto;
+  opacity: 0.2;
+  filter: grayscale(1);
+  transition: all 0.2s ease;
+}
+
+.remarks:hover {
+  opacity: 1;
+  filter: none;
+}
+
+.remarks .remarks-title {
+  display: inline-block;
+  font-size: 70%;
+  margin-bottom: 1rem;
+}
+
+.remarks .tech-stack > a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.remarks .tech-stack .tech-icon {
+  display: inline-block;
+  max-height: 5rem;
+}
+
 section {
   display: block;
   position: relative;
@@ -322,10 +354,10 @@ hr {
   border-radius: 50%;
 }
 
-p {
+p, .remarks {
   position: relative;
   z-index: 1;
-  line-height: 160%;
+  /* line-height: 160%; */
   font-size: 2rem;
   user-select: text;
 }
@@ -339,7 +371,7 @@ p a {
   font-weight: medium;
 }
 
-p:last-child::after {
+p:last-of-type::after, p.last::after {
   content: "•••";
   opacity: 0.1;
   letter-spacing: 1px;

@@ -99,8 +99,8 @@
           href="https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system">Hindley&mdash;Milner type system</a>
         inference algorithm to automatically infer the types of various language constructs such as bindings (also known
         as variable declarations), parameter types, and return types. This essentially allows the programmer to
-        omit <i>all types</i> to be inferred by the compiler, and yet, still enjoy the benefits of full static type
-        checking.</p>
+        omit <i>all types</i> to be inferred by the compiler, and yet, still enjoy the benefits of full static typing.
+      </p>
       <p>To avoid the common downfalls of subtyping (ex. classes), and taking the overall design of the compiler into
         consideration, record <a target="_blank" href="https://en.wikipedia.org/wiki/Row_polymorphism">row
           polymorphism</a> is employed, since it is a great alternative to subtyping and properly aligns with the other
@@ -109,18 +109,46 @@
       <p>The compiler was written with soundness in mind, thus, it made sense to focus on the functional programming
         paradigm. This eases up the overall complexity of the project and aligns with the other features as well.
       </p>
-      <p>Given that this project nears the <i>10,000 lines of code</i>, to ensure smooth refactoring, both unit and
+      <p class="last">Given that this project nears the <i>10,000 lines of code</i>, to ensure smooth refactoring, both
+        unit and
         end-to-end (E2E) tests are employed. I have consistently worked on this project for the past 3 years.</p>
+      <div class="remarks">
+        <strong class="remarks-title">Technologies used</strong>
+        <div class="tech-stack gap flex justify-center half-gap">
+          <a data-snappable target="_blank" href="#">
+            <img draggable="false" src="./img/rust.svg" class="tech-icon"
+              alt="An icon of the Rust programming language." />
+          </a>
+          <a data-snappable target="_blank" href="#">
+            <img draggable="false" src="./img/llvm.png" class="tech-icon"
+              alt="The icon of the LLVM compiler infrastructure project." />
+          </a>
+        </div>
+      </div>
       <hr />
       <p>
         <a target="_blank" href="#"><strong>Matrix web client</strong></a>
       </p>
       <p>Used React, and TypeScript to implement a fully-functional <a target="_blank"
           href="https://matrix.org/">Matrix</a> client. </p>
-      <!-- <div class="project-item">Compiler</div> -->
-    </div>
-    <!-- <a href="#" class="scroll-indicator">click to continue</a> -->
-    <img data-is-dark draggable="false" class="obj-wave" alt="Wave" src="./img/wave.svg" />
+      <div class="remarks">
+        <strong class="remarks-title">Technologies used</strong>
+        <div class="tech-stack gap flex justify-center half-gap">
+          <a data-snappable target="_blank" href="#">
+            <img draggable="false" src="./img/matrix.svg" class="tech-icon" alt="The icon the Matrix protocol." />
+          </a>
+          <a data-snappable target="_blank" href="#">
+            <img draggable="false" src="./img/javascript.webp" class="tech-icon"
+              alt="The icon of the JavaScript programming language." />
+          </a>
+          <a data-snappable target="_blank" href="#">
+            <img draggable="false" src="./img/css.png" class="tech-icon" alt="The icon of the CSS language." />
+          </a>
+        </div>
+        <!-- <div class="project-item">Compiler</div> -->
+      </div>
+      <!-- <a href="#" class="scroll-indicator">click to continue</a> -->
+      <img data-is-dark draggable="false" class="obj-wave" alt="Wave" src="./img/wave.svg" />
   </section>
   <section data-is-dark id="contact" class="fill flex justify-center col">
     <div class="container">

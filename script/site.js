@@ -220,6 +220,7 @@ window.addEventListener("load", () => {
     })
   })
 
+  // CONSIDER: Default to all links, then use opt-out?
   document.querySelectorAll("[data-snappable], nav a, p a").forEach(($snappable) => {
     $snappable.addEventListener("mouseenter", () => {
       // BUG: When you scroll a section, the pointer snap is misplaced.
