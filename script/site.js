@@ -223,10 +223,11 @@ window.addEventListener("load", () => {
   document.querySelectorAll("[data-snappable], nav a, p a").forEach(($snappable) => {
     $snappable.addEventListener("mouseenter", () => {
       // BUG: When you scroll a section, the pointer snap is misplaced.
+      const snappablePosition = $snappable.getBoundingClientRect()
 
       state.$snapTarget = $snappable
-      state.$cursor.style.left = `${$snappable.offsetLeft}px`
-      state.$cursor.style.top = `${$snappable.offsetTop}px`
+      state.$cursor.style.left = `${snappablePosition.x}px`
+      state.$cursor.style.top = `${snappablePosition.y}px`
       state.$cursor.style.width = `${$snappable.clientWidth || $snappable.offsetWidth}px`
       state.$cursor.style.height = `${$snappable.clientHeight || $snappable.offsetHeight}px`
       state.$cursor.classList.add("snapped")

@@ -62,7 +62,7 @@ body {
 }
 
 body.blur {
-  filter: blur(8px);
+  /* filter: blur(8px); */
 }
 
 nav {
@@ -150,6 +150,7 @@ button:active {
 
 button.special {
   box-shadow: 0 0 64px rgba(34, 34, 34, 0.2);
+  z-index: 1;
 }
 
 .flex {
@@ -199,7 +200,7 @@ button.special {
 .obj {
   pointer-events: none;
   position: absolute;
-  z-index: -1;
+  z-index: 0;
 }
 
 .guide {
@@ -261,6 +262,7 @@ button.special {
 }
 
 section {
+  display: block;
   position: relative;
   scroll-snap-align: start;
   padding: 5rem 0;
@@ -321,6 +323,8 @@ hr {
 }
 
 p {
+  position: relative;
+  z-index: 1;
   line-height: 160%;
   font-size: 2rem;
   user-select: text;

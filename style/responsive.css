@@ -1,21 +1,28 @@
 /* Phones */
-/* @media screen and (max-width: 599px) { */
-  /* html {
+@media screen and (max-width: 599px) { */
+  html {
     font-size: 8px;
     scroll-snap-type: y none;
     display: inherit;
-  } */
-/* } */
+  }
+}
 
 /* Tablet portrait */
-/* @media screen and (max-width: 600px) { */
+@media screen and (max-width: 600px) {
+  html {
+    font-size: 12px;
+  }
 
-/* } */
+  nav .links {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
 
 /* Tablet landscape */
 @media screen and (max-width: 900px) {
   html {
-
+    font-size: 14px;
   }
 
   .guide {
@@ -24,6 +31,10 @@
 
   #cursor {
     display: none !important;
+  }
+
+  * {
+    cursor: auto;
   }
 }
 

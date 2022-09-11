@@ -1,6 +1,6 @@
 section#hero {
   background-color: var(--color-pastel);
-  padding-top: 15rem;
+  padding-top: 5rem;
   min-height: 100vh;
 }
 
@@ -26,7 +26,7 @@ section#hero > .container  > .subtitle > .caret {
 
 section#hero .obj-hero {
   margin-top: 5rem;
-  max-height: 100%;
+  max-height: 700px;
 }
 
 section#about {
