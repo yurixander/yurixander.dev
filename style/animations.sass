@@ -1,0 +1,82 @@
+@keyframes phase
+  from
+    opacity: 1
+
+  60%
+    opacity: 1
+
+  90%
+    opacity: 0
+
+  to
+    opacity: 0
+
+@keyframes heartbeat
+  from
+    transform: scale(1)
+
+  20%
+    transform: scale(1.2)
+
+  to
+    transform: scale(1)
+
+@keyframes intro-appear
+  from
+    opacity: 0
+    transform: scale(0.7)
+
+@keyframes intro-slide-bottom
+  from
+    transform: translateY(-100%)
+
+@keyframes slow-spin
+  to
+    transform: translate(0, 25%) scaleX(-1) rotateZ(360deg)
+
+@keyframes wave
+  to
+    transform: translateX(calc(-100vw)) translateY(20%)
+
+@keyframes star-fall
+  from
+    opacity: 0
+    transform: rotateZ(0) scale(1.5)
+
+  10%
+    opacity: 0.7
+
+  to
+    transform: rotateZ(360deg) scale(0)
+    opacity: 0
+
+@keyframes rainbow-text
+  0%
+    background-image: linear-gradient(to right, #ffba7f, #ff9c7e, #2f1664, #42d5b6)
+
+  25%
+    background-image: linear-gradient(to right, #42d5b6, #ffba7f, #ff9c7e, #2f1664)
+
+  50%
+    background-image: linear-gradient(to right, #2f1664, #42d5b6, #ffba7f, #ff9c7e)
+
+  75%
+    background-image: linear-gradient(to right, #ff9c7e, #2f1664, #42d5b6, #ffba7f)
+
+  100%
+    background-image: linear-gradient(to right, #ffba7f, #ff9c7e, #2f1664, #42d5b6)
+
+[data-animation="star-fall"]
+  pointer-events: all
+  top: 0
+  left: 0
+  z-index: 1
+  transform-origin: center
+  animation: star-fall 10s linear forwards
+  transition: all 1s ease
+
+[data-animation="intro-appear"]
+  animation: intro-appear 0.8s ease
+
+[data-animation="intro-slide-bottom"]
+  animation: intro-slide-bottom 0.8s ease

@@ -1,159 +1,270 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+  <head>
+    <!-- Meta & title -->
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Yurixander Ricardo is a Full-Stack web and software developer based in Florida, US."
+    />
+    <meta
+      name="keywords"
+      content="HTML, CSS, JavaScript, C#, Rust, Developer"
+    />
+    <meta name="author" content="Yurixander Ricardo" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, noarchive" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Yurixander Ricardo</title>
 
-<head>
-  <!-- Meta & title -->
-  <meta charset="UTF-8" />
-  <meta name="description"
-    content="Yurixander Ricardo is a Full-Stack web and software developer based in Florida, US.">
-  <meta name="keywords" content="HTML, CSS, JavaScript, C#, Rust, Developer">
-  <meta name="author" content="Yurixander Ricardo" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex, noarchive" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Yurixander Ricardo</title>
+    <!-- Local styles -->
+    <link href="./style/site.css" rel="stylesheet" type="text/css" />
+    <link href="./style/sections.css" rel="stylesheet" type="text/css" />
+    <link href="./style/animations.css" rel="stylesheet" type="text/css" />
+    <link href="./style/util.css" rel="stylesheet" type="text/css" />
+    <link href="./style/responsive.css" rel="stylesheet" type="text/css" />
 
-  <!-- Local styles -->
-  <link href="./style/site.css" rel="stylesheet" />
-  <link href="./style/sections.css" rel="stylesheet" />
-  <link href="./style/animations.css" rel="stylesheet" />
-  <link href="./style/responsive.css" rel="stylesheet" />
-
-  <!-- Local scripts -->
-  <script src="./script/site.js"></script>
-</head>
-
-<body>
-  <nav data-animation="intro-slide-bottom">
-    <div class="container flex wrap align-center">
-      <a href="#hero" class="logo">yr</a>
-      <div class="links flex wrap align-center">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-        <a href="#blog">Blog</a>
-        <button class="btn special" data-href="./resume.pdf">🌟 View résumé</button>
+    <!-- Local scripts -->
+    <script src="./script/site.js"></script>
+  </head>
+  <body>
+    <nav data-animation="intro-slide-bottom">
+      <div class="container flex wrap align-center">
+        <a href="#hero" class="logo">yr</a>
+        <div class="links flex wrap align-center">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+          <a href="#blog">Blog</a>
+          <button class="btn special" data-href="./resume.pdf">
+            🌟 View résumé
+          </button>
+        </div>
       </div>
-    </div>
-  </nav>
-  <section id="hero" class="fill flex col justify-center">
-    <div data-animation="intro-appear" class="container flex col justify-center v-expand">
-      👋 Hi,<br />I'm Yurixander Ricardo<br />
-      <span class="subtitle">
-        A Full&mdash;Stack web &amp; software developer.
-        <span class="caret"></span>
-      </span>
-      <img class="obj-hero" draggable="false" src="./img/sprite-1.svg" />
-    </div>
-    <!-- 👋 Hi,<br />I'm Yurixander Ricardo<br />
+    </nav>
+    <section id="hero" class="fill flex col justify-center">
+      <div
+        data-animation="intro-appear"
+        class="container flex col justify-center v-expand"
+      >
+        <h1>👋 Hi,<br />I'm Yurixander Ricardo</h1>
+        <br />
+        <h2>
+          A Full&mdash;Stack web &amp; software developer.
+          <span class="caret"></span>
+        </h2>
+        <img
+          alt="A decorative sprite."
+          class="obj-hero"
+          draggable="false"
+          src="./img/sprite-1.svg"
+        />
+      </div>
+      <!-- 👋 Hi,<br />I'm Yurixander Ricardo<br />
     <span class="subtitle">
       A Full-Stack web and software developer.
       <span class="caret"></span>
     </span> -->
-    <!-- <a href="#" class="scroll-indicator">click to continue</a> -->
-  </section>
-  <div class="container">
-    <hr />
-  </div>
-  <section id="about" class="fill flex col">
+      <!-- <a href="#" class="scroll-indicator">click to continue</a> -->
+    </section>
     <div class="container">
-      <h1 class="section-title">About Me.</h1>
-      <svg data-animation="star-fall" name="star" class="obj">
-        <path xmlns="http://www.w3.org/2000/svg"
-          d="M159.449 22.6416L161.677 30.9142L169.949 33.1416L161.677 35.369L159.449 43.6416L157.222 35.369L148.949 33.1416L157.222 30.9142L159.449 22.6416Z"
-          fill="#d7c7afcc" />
-      </svg>
-      <img data-parallax height="500" draggable="false" class="obj obj-about" alt="A sprite for decoration."
-        src="./img/sprite-3.svg" />
-      <p>I've been fascinated by computers a child. Ever since, I have been constantly learning and
-        sharpening my programming skills, mostly through personal projects. I enjoy solving challenging problems and
-        learning
-        complex topics,
-        such as Compiler Design.</p>
-      <p>In 2019, I received an internship as a <i>Web Team Intern</i> at <a target="_blank"
-          href="https://www.yourdigitalresource.com/">Digital
-          Resource</a>; one of Inc. 500's fastest growing private companies. After a
-        month, I was immediately hired as a full&mdash;time employee given my skills and dedication.
-      </p>
-      <p>Currently enrolled on my Junior year at Florida Atlantic University (FAU) with a cumulative <strong>GPA of
-          3.9</strong>, I am looking forward to a software development internship. <i>Can't wait to work with
-          you!</i></p>
-    </div>
-    <!-- <a href="#" class="scroll-indicator">click to continue</a> -->
-  </section>
-  <div class="container">
-    <hr />
-  </div>
-  <!-- TODO: Object should be on top of the horizontal line. -->
-  <section id="projects" class="fill flex col">
-    <div class="container">
-      <h1 class="section-title">Projects.</h1>
-      <!-- TODO: Don't forget to add icons to represent tech stack. Also, a timeline. -->
-      <p>
-        <strong>Compiler</strong>
-      </p>
-      <p>Used the <a target="_blank" href="https://www.rust-lang.org/">Rust programming
-          language</a> to implement a compiler from <i class="rainbow-text">scratch</i>. Featuring an advanced type
-        system, I implemented a custom
-        derivative of the <a target="_blank"
-          href="https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system">Hindley&mdash;Milner type system</a>
-        inference algorithm to automatically infer the types of various language constructs such as bindings (also known
-        as variable declarations), parameter types, and return types. This essentially allows the programmer to
-        omit <i>all types</i> to be inferred by the compiler, and yet, still enjoy the benefits of full static typing.
-      </p>
-      <p>To avoid the common downfalls of subtyping (ex. classes), and taking the overall design of the compiler into
-        consideration, record <a target="_blank" href="https://en.wikipedia.org/wiki/Row_polymorphism">row
-          polymorphism</a> is employed, since it is a great alternative to subtyping and properly aligns with the other
-        features.
-      </p>
-      <p>The compiler was written with soundness in mind, thus, it made sense to focus on the functional programming
-        paradigm. This eases up the overall complexity of the project and aligns with the other features as well.
-      </p>
-      <p class="last">Given that this project nears the <i>10,000 lines of code</i>, to ensure smooth refactoring, both
-        unit and
-        end-to-end (E2E) tests are employed. I have consistently worked on this project for the past 3 years.</p>
-      <div class="remarks">
-        <strong class="remarks-title">Technologies used</strong>
-        <div class="tech-stack gap flex justify-center half-gap">
-          <a data-snappable target="_blank" href="#">
-            <img draggable="false" src="./img/rust.svg" class="tech-icon"
-              alt="An icon of the Rust programming language." />
-          </a>
-          <a data-snappable target="_blank" href="#">
-            <img draggable="false" src="./img/llvm.png" class="tech-icon"
-              alt="The icon of the LLVM compiler infrastructure project." />
-          </a>
-        </div>
-      </div>
       <hr />
-      <p>
-        <a target="_blank" href="#"><strong>Matrix web client</strong></a>
-      </p>
-      <p>Used React, and TypeScript to implement a fully-functional <a target="_blank"
-          href="https://matrix.org/">Matrix</a> client. </p>
-      <div class="remarks">
-        <strong class="remarks-title">Technologies used</strong>
-        <div class="tech-stack gap flex justify-center half-gap">
-          <a data-snappable target="_blank" href="#">
-            <img draggable="false" src="./img/matrix.svg" class="tech-icon" alt="The icon the Matrix protocol." />
-          </a>
-          <a data-snappable target="_blank" href="#">
-            <img draggable="false" src="./img/javascript.webp" class="tech-icon"
-              alt="The icon of the JavaScript programming language." />
-          </a>
-          <a data-snappable target="_blank" href="#">
-            <img draggable="false" src="./img/css.png" class="tech-icon" alt="The icon of the CSS language." />
-          </a>
-        </div>
-        <!-- <div class="project-item">Compiler</div> -->
+    </div>
+    <section id="about" class="fill flex col">
+      <div class="container">
+        <h1 class="section-title">About Me.</h1>
+        <svg data-animation="star-fall" class="obj obj-star">
+          <path
+            xmlns="http://www.w3.org/2000/svg"
+            d="M159.449 22.6416L161.677 30.9142L169.949 33.1416L161.677 35.369L159.449 43.6416L157.222 35.369L148.949 33.1416L157.222 30.9142L159.449 22.6416Z"
+            fill="#d7c7afcc"
+          />
+        </svg>
+        <img
+          data-parallax
+          height="500"
+          draggable="false"
+          class="obj obj-about"
+          alt="A sprite for decoration."
+          src="./img/sprite-3.svg"
+        />
+        <p>
+          I've been fascinated by computers a child. Ever since, I have been
+          constantly learning and sharpening my programming skills, mostly
+          through personal projects. I enjoy solving challenging problems and
+          learning complex topics, such as Compiler Design.
+        </p>
+        <p>
+          In 2019, I received an internship as a <i>Web Team Intern</i> at
+          <a target="_blank" href="https://www.yourdigitalresource.com/"
+            >Digital Resource</a
+          >; one of Inc. 500's fastest growing private companies. After a month,
+          I was immediately hired as a full&mdash;time employee given my skills
+          and dedication.
+        </p>
+        <p>
+          Currently enrolled on my Junior year at Florida Atlantic University
+          (FAU) with a cumulative <strong>GPA of 3.9</strong>, I am looking
+          forward to a software development internship.
+          <i>Can't wait to work with you!</i>
+        </p>
       </div>
       <!-- <a href="#" class="scroll-indicator">click to continue</a> -->
-      <img data-is-dark draggable="false" class="obj-wave" alt="Wave" src="./img/wave.svg" />
-  </section>
-  <section data-is-dark id="contact" class="fill flex justify-center col">
+    </section>
     <div class="container">
-      <h1 class="section-title">Let's get in touch!</h1>
-      <!-- <div class="flex col gap align-center justify-center">
+      <hr />
+    </div>
+    <!-- TODO: Object should be on top of the horizontal line. -->
+    <section id="projects" class="fill flex col">
+      <div class="container">
+        <h1 class="section-title">Projects.</h1>
+        <!-- TODO: Don't forget to add icons to represent tech stack. Also, a timeline. -->
+        <p>
+          <strong>Compiler</strong>
+        </p>
+        <p>
+          Used the
+          <a target="_blank" href="https://www.rust-lang.org/"
+            >Rust programming language</a
+          >
+          to implement a compiler from <i class="rainbow-text">scratch</i>.
+          Featuring an advanced type system, I implemented a custom derivative
+          of the
+          <a
+            target="_blank"
+            href="https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system"
+            >Hindley&mdash;Milner type system</a
+          >
+          inference algorithm to automatically infer the types of various
+          language constructs such as bindings (also known as variable
+          declarations), parameter types, and return types. This essentially
+          allows the programmer to omit <i>all types</i> to be inferred by the
+          compiler, and yet, still enjoy the benefits of full static typing.
+        </p>
+        <p>
+          To avoid the common downfalls of subtyping (ex. classes), and taking
+          the overall design of the compiler into consideration, record
+          <a
+            target="_blank"
+            href="https://en.wikipedia.org/wiki/Row_polymorphism"
+            >row polymorphism</a
+          >
+          is employed, since it is a great alternative to subtyping and properly
+          aligns with the other features.
+        </p>
+        <p>
+          The compiler was written with soundness in mind, thus, it made sense
+          to focus on the functional programming paradigm. This eases up the
+          overall complexity of the project and aligns with the other features
+          as well.
+        </p>
+        <p class="last">
+          Given that this project nears the <i>10,000 lines of code</i>, to
+          ensure smooth refactoring, both unit and end-to-end (E2E) tests are
+          employed. I have consistently worked on this project for the past 3
+          years.
+        </p>
+        <div class="remarks">
+          <strong class="remarks-title">Technologies used</strong>
+          <div class="tech-stack gap flex justify-center half-gap">
+            <a data-snappable target="_blank" href="#">
+              <img
+                draggable="false"
+                src="./img/rust.svg"
+                class="tech-icon"
+                alt="An icon of the Rust programming language."
+              />
+            </a>
+            <a data-snappable target="_blank" href="#">
+              <img
+                draggable="false"
+                src="./img/llvm.png"
+                class="tech-icon"
+                alt="The icon of the LLVM compiler infrastructure project."
+              />
+            </a>
+          </div>
+        </div>
+        <hr />
+        <p>
+          <a target="_blank" href="#"><strong>Matrix web client</strong></a>
+        </p>
+        <p>
+          Used React, and TypeScript to implement a
+          <a target="_blank" href="https://matrix.org/">Matrix</a> client.
+        </p>
+        <div class="remarks">
+          <strong class="remarks-title">Technologies used</strong>
+          <div class="tech-stack gap flex justify-center half-gap">
+            <a data-snappable target="_blank" href="#">
+              <img
+                draggable="false"
+                src="./img/matrix.svg"
+                class="tech-icon"
+                alt="The icon the Matrix protocol."
+              />
+            </a>
+            <a data-snappable target="_blank" href="#">
+              <img
+                draggable="false"
+                src="./img/javascript.webp"
+                class="tech-icon"
+                alt="The icon of the JavaScript programming language."
+              />
+            </a>
+            <a data-snappable target="_blank" href="#">
+              <img
+                draggable="false"
+                src="./img/css.png"
+                class="tech-icon"
+                alt="The icon of the CSS language."
+              />
+            </a>
+          </div>
+          <!-- <div class="project-item">Compiler</div> -->
+        </div>
+        <hr />
+        <p>
+          <strong>
+            <a target="_blank" href="#">Movie search database</a>
+          </strong>
+        </p>
+        <p></p>
+        <div class="remarks">
+          <strong class="remarks-title">Technologies used</strong>
+          <div class="tech-stack gap flex justify-center half-gap">
+            <a data-snappable target="_blank" href="#">
+              <img
+                draggable="false"
+                src="./img/javascript.webp"
+                class="tech-icon"
+                alt="The icon of the JavaScript programming language."
+              />
+            </a>
+            <a data-snappable target="_blank" href="#">
+              <img
+                draggable="false"
+                src="./img/css.png"
+                class="tech-icon"
+                alt="The icon of the CSS language."
+              />
+            </a>
+          </div>
+        </div>
+        <!-- <a href="#" class="scroll-indicator">click to continue</a> -->
+      </div>
+      <img
+        data-is-dark
+        draggable="false"
+        class="obj-wave"
+        alt="Wave"
+        src="./img/wave.svg"
+      />
+    </section>
+    <section data-is-dark id="contact" class="fill flex justify-center col">
+      <div class="container">
+        <h1 class="section-title">Let's get in touch!</h1>
+        <!-- <div class="flex col gap align-center justify-center">
         <a class="method">
           <span class="title">Give me a call or text</span>
         </a>
@@ -164,55 +275,67 @@
           <span class="title">Leave a message</span>
         </a>
       </div> -->
-      <div tabindex="0" class="terminal flex col">
-        <div class="title-bar flex">
-          <div class="flex align-center gap-half">
-            <div class="title-bar-btn"></div>
-            <div class="title-bar-btn"></div>
-            <div class="title-bar-btn"></div>
+        <div tabindex="0" class="terminal flex col">
+          <div class="title-bar flex">
+            <div class="flex align-center gap-half">
+              <div class="title-bar-btn"></div>
+              <div class="title-bar-btn"></div>
+              <div class="title-bar-btn"></div>
+            </div>
+            <span class="title-bar-title">Terminal&mdash;Contact</span>
           </div>
-          <span class="title-bar-title">Terminal&mdash;Contact</span>
+          <div tabindex="1" class="content">
+            <span data-non-deletable
+              >Leave a message! Use this terminal to leave me a message.
+              <i
+                >This terminal is completely custom-made in JavaScript! Take a
+                look at the source if you are interested.</i
+              >
+              <br />
+            </span>
+          </div>
         </div>
-        <div tabindex="1" class="content">
-          <span data-non-deletable>Leave a message! Use this terminal to leave me a message. <i>This
-              terminal is
-              completely custom-made in JavaScript! Take a look at the source if you are interested.</i>
-            <br />
-          </span>
+        <div class="terminal-subtitle">
+          &mdash; Please use this terminal to contact me &mdash;
         </div>
+        <img
+          class="obj obj-contact"
+          draggable="false"
+          alt="Rocket-ship sprite."
+          src="./img/sprite-4.svg"
+        />
       </div>
-      <div class="terminal-subtitle">&mdash; Please use this terminal to contact me &mdash;</div>
-      <img class="obj obj-contact" draggable="false" alt="Rocket-ship sprite." src="./img/sprite-4.svg" />
-    </div>
-    <!-- <a href="#" class="scroll-indicator">click to continue</a> -->
-  </section>
-  <footer data-is-dark>
-    <div class="container">
-      <hr />
-      <span class="disclaimer">This site was made from
-        <i class="rainbow-text">scratch</i>, using pure HTML, CSS &amp; JavaScript, with <span
-          class="heart">🧡</span>.<br />&copy; 2022 Yurixander Ricardo &bull; All rights reserved.</span>
-      <!-- <img width="900" class="footer-obj" src="./img/sprite-1.svg" alt="A sprite for decoration." /> -->
-    </div>
-  </footer>
+      <!-- <a href="#" class="scroll-indicator">click to continue</a> -->
+    </section>
+    <footer data-is-dark>
+      <div class="container">
+        <hr />
+        <span class="disclaimer"
+          >This site was made from <i class="rainbow-text">scratch</i>, using
+          pure HTML, CSS &amp; JavaScript, with
+          <span class="heart">🧡</span>.<br />&copy; 2022 Yurixander Ricardo
+          &bull; All rights reserved.</span
+        >
+        <!-- <img width="900" class="footer-obj" src="./img/sprite-1.svg" alt="A sprite for decoration." /> -->
+      </div>
+    </footer>
 
-  <!-- Other elements -->
-  <div class="guide">
-    <a class="dot active" href="#hero">
-      <span class="hint">landing</span>
-    </a>
-    <a class="dot" href="#about">
-      <span class="hint">about</span>
-    </a>
-    <a class="dot" href="#projects">
-      <span class="hint">projects</span>
-    </a>
-    <a class="dot" href="#contact">
-      <span class="hint">contact</span>
-    </a>
-  </div>
-  <audio data-asset="click" preload="auto" src="./sound/click.mp3"></audio>
-  <div id="cursor"></div>
-</body>
-
+    <!-- Other -->
+    <div class="guide">
+      <a class="dot active" href="#hero">
+        <span class="hint">landing</span>
+      </a>
+      <a class="dot" href="#about">
+        <span class="hint">about</span>
+      </a>
+      <a class="dot" href="#projects">
+        <span class="hint">projects</span>
+      </a>
+      <a class="dot" href="#contact">
+        <span class="hint">contact</span>
+      </a>
+    </div>
+    <audio data-asset="click" preload="auto" src="./sound/click.mp3"></audio>
+    <div id="cursor"></div>
+  </body>
 </html>

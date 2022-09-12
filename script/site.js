@@ -148,7 +148,7 @@ window.addEventListener("load", () => {
   setInterval(() => {
     starSpawnLocations.forEach((spawnLocationId) => {
       const $targetLocation = document.getElementById(spawnLocationId)
-      const $star = document.querySelector("[name='star']").cloneNode(true)
+      const $star = document.querySelector(".obj-star").cloneNode(true)
       const duration = (Math.random() * 10) + 2
 
       $star.addEventListener("mouseenter", (_e) => {
@@ -221,7 +221,7 @@ window.addEventListener("load", () => {
   })
 
   // CONSIDER: Default to all links, then use opt-out?
-  document.querySelectorAll("[data-snappable], nav a, p a").forEach(($snappable) => {
+  document.querySelectorAll("[data-snappable], nav a, p a, button").forEach(($snappable) => {
     $snappable.addEventListener("mouseenter", () => {
       // BUG: When you scroll a section, the pointer snap is misplaced.
       const snappablePosition = $snappable.getBoundingClientRect()

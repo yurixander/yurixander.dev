@@ -1,0 +1,38 @@
+.flex
+  display: flex
+
+  &.gap
+    gap: 1rem
+
+  &.wrap
+    flex-wrap: wrap
+
+  &.gap-half
+    gap: 0.5rem
+
+  &.col
+    flex-direction: column
+
+  &.center
+    align-items: center
+    justify-content: center
+
+  &.align-center
+    align-items: center
+
+  &.justify-center
+    justify-content: center
+
+.container
+  max-width: var(--content-width)
+  width: 100%
+  margin: 0 auto
+  padding: 0 var(--responsive-padding)
+
+.v-expand
+  height: 100%
+
+.obj
+  pointer-events: none
+  position: absolute
+  z-index: 0

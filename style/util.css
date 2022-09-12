@@ -1,0 +1,42 @@
+.flex {
+  display: flex;
+}
+.flex.gap {
+  gap: 1rem;
+}
+.flex.wrap {
+  flex-wrap: wrap;
+}
+.flex.gap-half {
+  gap: 0.5rem;
+}
+.flex.col {
+  flex-direction: column;
+}
+.flex.center {
+  align-items: center;
+  justify-content: center;
+}
+.flex.align-center {
+  align-items: center;
+}
+.flex.justify-center {
+  justify-content: center;
+}
+
+.container {
+  max-width: var(--content-width);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--responsive-padding);
+}
+
+.v-expand {
+  height: 100%;
+}
+
+.obj {
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+}/*# sourceMappingURL=util.css.map */
