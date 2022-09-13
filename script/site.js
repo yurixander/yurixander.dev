@@ -7,7 +7,7 @@ const consts = {
     ["clear", "Clear the console."],
     ["send-msg", "Re-run the message prompt."],
     ["view-resume", "Opens the Resume."],
-    ["play-music", "Plays some nice background music."]
+    ["view-source", "Open the GitHub repository for this website."]
   ],
   parallaxMaxDistance: 30
 }
@@ -128,6 +128,16 @@ window.addEventListener("load", () => {
       }
       case "send-msg": {
         sendMessagePrompt()
+
+        return
+      }
+      case "view-resume": {
+        window.location.href = "./resume.pdf"
+
+        return
+      }
+      case "view-source": {
+        window.open("https://github.com/yurixander/yurixander.dev", "_blank")
 
         return
       }
@@ -296,7 +306,7 @@ window.addEventListener("load", () => {
     }
     // Submit command.
     else if (e.key === "Enter") {
-      let commandString = state.terminalInputBuffer.trim()
+      const commandString = state.terminalInputBuffer.trim()
 
       // Ignore empty input.
       if (commandString === "")
@@ -304,14 +314,14 @@ window.addEventListener("load", () => {
 
       state.terminalInputBuffer = ""
 
-      let parts = commandString.split(" ")
-      let name = parts[0]
-      let args = parts.slice(1)
+      const parts = commandString.split(" ")
+      const name = parts[0]
+      const args = parts.slice(1)
 
       appendTerminalNewline()
 
       if (state.terminalInputHandler !== null) {
-        let handler = state.terminalInputHandler
+        const handler = state.terminalInputHandler
 
         state.terminalInputHandler = defaultCommandHandler
         handler(commandString, name, args)
@@ -343,7 +353,7 @@ window.addEventListener("load", () => {
     if (state.$snapTarget !== null)
       return
 
-    let nextPosition = calculateCenterPoint({
+    const nextPosition = calculateCenterPoint({
       x: e.x,
       y: e.y
     }, consts.cursorSize)

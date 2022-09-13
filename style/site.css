@@ -68,12 +68,10 @@ body.blur {
 }
 
 nav {
-  /* position: sticky; */
   top: 0;
   background-color: var(--color-pastel);
   z-index: 1;
   padding-top: 2rem;
-  /* padding: 2rem; */
 }
 
 nav a {
@@ -156,7 +154,6 @@ button {
 button:active {
   transform: translateY(3px);
   opacity: 0.5;
-  /* border-color: transparent; */
   border-bottom-width: 4px;
   margin-bottom: 2px;
 }
@@ -253,7 +250,6 @@ button.special {
 }
 
 .rainbow-text {
-  /* background-image: linear-gradient(to left, indigo, blue, green, orange, red); */
   /* background-image: linear-gradient(to right, #ffba7f, #ff9c7e, #2f1664, #42d5b6); */
   background-clip: text;
   -webkit-background-clip: text;
@@ -299,11 +295,6 @@ section {
   scroll-snap-align: start;
   padding: 5rem 0;
   min-height: 100vh;
-}
-
-section.fill {
-  /* height: var(--page-height); */
-  /* height: 100vh; */
 }
 
 section h1.section-title {

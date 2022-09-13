@@ -1,4 +1,3 @@
-/* Phones */
 @media screen and (max-width: 599px) {
   html {
     font-size: 8px;
@@ -7,7 +6,6 @@
     display: inherit;
   }
 }
-/* Tablet portrait */
 @media screen and (max-width: 600px) {
   html {
     font-size: 12px;
@@ -17,7 +15,6 @@
     flex-wrap: wrap;
   }
 }
-/* Tablet landscape */
 @media screen and (max-width: 900px) {
   html {
     font-size: 14px;
@@ -31,5 +28,4 @@
   * {
     cursor: auto;
   }
-}
-/* Desktop *//*# sourceMappingURL=responsive.css.map */
+}/*# sourceMappingURL=responsive.css.map */

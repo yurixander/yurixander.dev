@@ -13,14 +13,10 @@ section#hero > .container .caret
   width: 1.5rem
   border: 3px solid var(--color-black)
   animation: phase 0.8s linear infinite alternate
-  /* transition: opacity 0.2s ease; */
 
 section#hero .obj-hero
   margin-top: 5rem
   max-height: 700px
-
-section#about
-  /* overflow: hidden; */
 
 section#about h1.section-title
   position: relative
@@ -89,13 +85,10 @@ section#contact .obj-contact
   box-shadow: 2px 2px 8px #000
   opacity: 0.5
   transition: all 0.2s ease
-  /* TODO: Need to apply this height to content so it is selectable. */
-  height: 100%
+  height: 100% // TODO: Need to apply this height to content so it is selectable.
   max-height: 500px
-  /* REVIEW: Shouldn't need to add this? */
-  min-height: 500px
-  /* Hides the corner cuts */
-  overflow: hidden
+  min-height: 500px // REVIEW: Shouldn't need to add this?
+  overflow: hidden // Hide corner cuts.
   z-index: 1
   transform-origin: center
 
@@ -119,8 +112,7 @@ section#contact .obj-contact
     font-family: monospace
     font-size: 85%
     margin: 0 auto
-     /* FIXME: Inaccurate. 50% doesn't seem to work. Likely caused by margin. */
-    transform: translateX(-25%)
+    transform: translateX(-25%) // FIXME: Inaccurate.50% doesn't seem to work.Likely caused by margin.
     font-weight: bold
     text-transform: lowercase
 
@@ -177,7 +169,12 @@ section#contact .obj-contact
     animation: phase 0.8s ease infinite
 
   section#contact &-subtitle
+    display: inline-block
     margin-top: 1.5rem
     text-transform: lowercase
     opacity: 0.5
     font-family: monospace
+    transition: opacity 0.2s ease
+
+    &:hover
+      opacity: 1
