@@ -9,7 +9,9 @@ const consts = {
     ["view-resume", "Opens the Resume."],
     ["view-source", "Open the GitHub repository for this website."]
   ],
-  parallaxMaxDistance: 30
+  parallaxMaxDistance: 30,
+  // This helps prevent crawler bots, and thus possible spam.
+  email: "eXVyaXhhbmRlci5yaWNhcmRvQG91dGxvb2suY29t"
 }
 
 function calculateCenterPoint(position, size) {
@@ -42,7 +44,8 @@ window.addEventListener("load", () => {
     $contactSection: document.getElementById("contact"),
     terminalInputBuffer: "",
     terminalInputHandler: null,
-    lastScrollHeight: 0
+    lastScrollHeight: 0,
+    $darkSensitives: document.querySelectorAll("[data-dark-sensitive]")
   }
 
   // Helper functions.
@@ -62,19 +65,21 @@ window.addEventListener("load", () => {
       appendTerminalNewline()
   }
 
-  const appendTerminalSpecialCharacter = (tagName, classNameOrNull = null) => {
+  const appendTerminalSpecialCharacter = (tagName, classNameOrNull = null, isDeletable = false) => {
     let $specialCharacter = document.createElement(tagName)
 
     if (classNameOrNull !== null)
       $specialCharacter.classList.add(classNameOrNull)
 
-    $specialCharacter.setAttribute("data-non-deletable", "")
+    if (!isDeletable)
+      $specialCharacter.setAttribute("data-non-deletable", "")
+
     state.$terminal.appendChild($specialCharacter)
     scrollTerminal()
   }
 
   const appendTerminalNewline = () => appendTerminalSpecialCharacter("br")
-  const appendTerminalSpace = () => appendTerminalSpecialCharacter("span", "space")
+  const appendTerminalSpace = (isDeletable = false) => appendTerminalSpecialCharacter("span", "space", isDeletable)
 
   const terminalPrompt = (text, formatOrNull, callback) => {
     const addPromptMessage = () => {
@@ -150,7 +155,7 @@ window.addEventListener("load", () => {
   // Initialization.
   console.clear()
 
-  console.log("👋 Hi! Interested in looking at the source code? Go ahead! If you have any questions or concerns about this site, feel free to reach me at yurixander.ricardo@outlook.com.")
+  console.log(`👋 Hi! Interested in looking at the source code? Go ahead! If you have any questions or concerns about this site, feel free to reach me at ${atob(consts.email)}.`)
 
   // Spawn stars.
   const starSpawnLocations = ["contact"]
@@ -171,7 +176,7 @@ window.addEventListener("load", () => {
       $targetLocation.prepend($star)
       setTimeout(() => $star.remove(), duration * 1000)
     })
-  }, 500)
+  }, 500_000)
 
   const sendMessagePrompt = () => terminalPrompt("Type your name:", null, (name) => {
     terminalPrompt("Enter your email:", consts.emailRegex, (email) => {
@@ -184,12 +189,31 @@ window.addEventListener("load", () => {
             return
           }
 
-          // TODO: Send message.
-          console.log(name, email, message)
-
-          addTerminalMessage("Your message was successfully sent. You will receive a response via e-mail soon. Thank you!")
-
-          defaultPrompt()
+          fetch("https://api.staticforms.xyz/submit", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              // Don't worry, this isn't secret :).
+              accessKey: "bee85cdb-bd13-4bbe-896b-d159c35577d0",
+              subject: "Contact form submission from website",
+              replyTo: "@",
+              name,
+              email,
+              message
+            }),
+          })
+            .then((response) => {
+              if (response.ok)
+                addTerminalMessage("Your message was successfully sent. You will receive a response via e-mail soon. Thank you!")
+              else
+                addTerminalMessage(`Message was sent but the service did not provide a success response: ${response.statusText} (${response.status})`)
+            })
+            .catch((error) => {
+              addTerminalMessage(`There was an error while sending your message: ${error}`)
+            })
+            .finally(defaultPrompt)
         })
       })
     })
@@ -198,9 +222,7 @@ window.addEventListener("load", () => {
   sendMessagePrompt()
 
   document.querySelectorAll("button[data-href]").forEach(($btn) => {
-    $btn.addEventListener("click", () => {
-      window.location.href = $btn.getAttribute("data-href")
-    })
+    $btn.addEventListener("click", () => window.open($btn.getAttribute("data-href"), "_blank"))
   })
 
   document.querySelectorAll("a, button").forEach(($clickable) => {
@@ -209,14 +231,10 @@ window.addEventListener("load", () => {
     })
   })
 
+  // FIXME: This follows cursor so it doesn't work perfectly well.
   document.querySelectorAll("[data-is-dark]").forEach(($dark) => {
-    $dark.addEventListener("mouseenter", () => {
-      state.$cursor.classList.add("invert")
-    })
-
-    $dark.addEventListener("mouseleave", () => {
-      state.$cursor.classList.remove("invert")
-    })
+    $dark.addEventListener("mouseenter", () => state.$darkSensitives.forEach(($darkSensitive) => $darkSensitive.classList.add("meta-dark")))
+    $dark.addEventListener("mouseleave", () => state.$darkSensitives.forEach(($darkSensitive) => $darkSensitive.classList.remove("meta-dark")))
   })
 
   document.querySelectorAll(".guide > .dot").forEach(($guideDot) => {
@@ -272,6 +290,51 @@ window.addEventListener("load", () => {
   //     // console.log(window.pageYOffset)
   //   })
   // })
+
+  // Obfuscate email & personal information from crawlers.
+  document.querySelectorAll("[data-href-email]").forEach(($email) => {
+    $email.addEventListener("click", () => window.open(`mailto:${atob(consts.email)}`, "_self"))
+  })
+
+  // Parallax effect.
+  document.querySelectorAll("[data-parallax]").forEach(($parallax) => {
+    window.addEventListener("scroll", () => {
+      const scrollDistance = window.scrollY
+
+      $parallax.style.transform = `translateY(${scrollDistance}px)`
+      console.log($parallax)
+    })
+  })
+
+  // Scroll effect.
+  const scrollObserver = new IntersectionObserver((entries) => entries.forEach((entry) => {
+    const scrollAnimation = entry.target.getAttribute("data-scroll-animation")
+    const hasScrollAnimation = scrollAnimation !== null
+
+    if (entry.isIntersecting) {
+      entry.target.classList.remove("meta-hidden")
+      entry.target.classList.add("meta-visible")
+
+      if (hasScrollAnimation)
+        entry.target.setAttribute("data-animation", scrollAnimation)
+    }
+    else {
+      entry.target.classList.remove("meta-visible")
+      entry.target.classList.add("meta-hidden")
+
+      if (hasScrollAnimation)
+        entry.target.removeAttribute("data-animation")
+    }
+  }), {
+    // rootMargin: "500px",
+    // threshold: 1.0
+  })
+
+  document.querySelectorAll("p").forEach(($p) => {
+    $p.setAttribute("data-scroll-animation", "text-appear")
+  })
+
+  document.querySelectorAll("[data-has-scroll-effect], [data-scroll-animation]").forEach(($scrollEffectEl) => scrollObserver.observe($scrollEffectEl))
 
   // Event listeners.
   window.addEventListener("scroll", () => {
@@ -333,18 +396,20 @@ window.addEventListener("load", () => {
     else if (e.key.length > 1)
       return
 
+    // At this point, we can register the key to the input buffer.
+    state.terminalInputBuffer += e.key
+
     let $character = document.createElement("span")
 
     // Edge case for space.
     if (e.key === " ") {
-      appendTerminalSpace()
+      appendTerminalSpace(true)
 
       return
     }
     else
       $character.textContent = e.key
 
-    state.terminalInputBuffer += e.key
     state.$terminal.appendChild($character)
     scrollTerminal()
   })

@@ -78,20 +78,16 @@
 @keyframes slow-spin {
   to {
     transform: translate(0, 25%) scaleX(-1) rotateZ(360deg);
-    -webkit-transform: translate(0, 25%) scaleX(-1) rotateZ(360deg);
-    -moz-transform: translate(0, 25%) scaleX(-1) rotateZ(360deg);
-    -ms-transform: translate(0, 25%) scaleX(-1) rotateZ(360deg);
-    -o-transform: translate(0, 25%) scaleX(-1) rotateZ(360deg);
-}
+  }
 }
 @-webkit-keyframes wave {
   to {
-    transform: translateX(-100vw) translateY(20%);
+    transform: translateX(50%);
   }
 }
 @keyframes wave {
   to {
-    transform: translateX(-100vw) translateY(20%);
+    transform: translateX(50%);
   }
 }
 @-webkit-keyframes star-fall {
@@ -154,6 +150,32 @@
     background-image: linear-gradient(to right, #ffba7f, #ff9c7e, #2f1664, #42d5b6);
   }
 }
+@-webkit-keyframes text-appear {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  50% {
+    opacity: 0.2;
+    transform: translateY(40px);
+  }
+  80% {
+    opacity: 0.5;
+  }
+}
+@keyframes text-appear {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  50% {
+    opacity: 0.2;
+    transform: translateY(40px);
+  }
+  80% {
+    opacity: 0.5;
+  }
+}
 [data-animation=star-fall] {
   pointer-events: all;
   top: 0;
@@ -173,4 +195,9 @@
 [data-animation=intro-slide-bottom] {
   -webkit-animation: intro-slide-bottom 0.8s ease;
           animation: intro-slide-bottom 0.8s ease;
+}
+
+[data-animation=text-appear] {
+  -webkit-animation: text-appear 0.6s ease;
+          animation: text-appear 0.6s ease;
 }/*# sourceMappingURL=animations.css.map */

@@ -3,6 +3,9 @@ section#hero
   padding-top: 5rem
   min-height: 100vh
 
+section#hero h2 // TODO: Need to eliminate this special case.
+  font-size: 5rem
+
 section#hero > .container
   font-weight: bold
 
@@ -18,11 +21,26 @@ section#hero .obj-hero
   margin-top: 5rem
   max-height: 700px
 
+section#about .personal-picture
+  border-radius: 50%
+  // box-shadow: 2px 2px 16px #8a8071
+  // box-shadow: 8px 8px 0 #e78b6f
+  box-shadow: 0 0 160px #e78b6f
+  max-width: 400px
+  width: 100%
+  margin: 0 auto
+  display: block
+  background-color: #ff9c7e
+  transform-origin: center
+  transform: rotateZ(3deg)
+
 section#about h1.section-title
   position: relative
   z-index: 1
 
 section#about .obj-about
+  max-width: min-content
+  opacity: 0.5
   left: 0
   bottom: 0
   transform: translate(0, 25%) scaleX(-1)
@@ -32,9 +50,11 @@ section#projects
   position: relative
   margin-top: 10rem
   /* background: linear-gradient(to bottom, #ffba7f, #ff9c7e, #42d5b6); */
-  background: linear-gradient(to bottom, var(--color-pastel), #b4a895)
+  // background: linear-gradient(to bottom, var(--color-pastel), #b4a895)
   /* box-shadow: 0 0 128px 32px #ffba7f; */
   padding-bottom: 0
+  background-color: var(--color-dark-2)
+  color: var(--color-white)
 
 section#projects .project-item
   width: 100%
@@ -48,18 +68,27 @@ section#projects .project-item
   padding-left: 4rem
   font-style: italic
 
-section#projects .obj-wave
-  width: 200vw
-  margin-top: -20%
-  transform: translateY(20%)
-  animation: wave 10s ease infinite alternate
-
 section#contact
   /* background: linear-gradient(to bottom, var(--color-black), #000); */
   background-color: var(--color-dark)
   color: var(--color-pastel)
   text-align: center
+  padding-top: 0
   /* overflow: hidden; */
+
+section#contact .obj-wave
+  position: relative
+  top: 0
+  left: 0
+  width: 200vw
+  // max-height: 5rem
+  // margin-top: -20%
+  // transform: translateY(20%)
+  animation: wave 10s ease infinite alternate
+  max-height: 20rem
+  object-fit: cover
+  background-image: url("../img/wave.svg")
+  // max-width: 100%
 
 section#contact h1.section-title
   margin-bottom: 8rem
@@ -175,6 +204,7 @@ section#contact .obj-contact
     opacity: 0.5
     font-family: monospace
     transition: opacity 0.2s ease
+    text-decoration: wavy // FIXME: Not working for some reason.
 
     &:hover
       opacity: 1

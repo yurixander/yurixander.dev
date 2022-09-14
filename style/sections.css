@@ -4,6 +4,10 @@ section#hero {
   min-height: 100vh;
 }
 
+section#hero h2 {
+  font-size: 5rem;
+}
+
 section#hero > .container {
   font-weight: bold;
 }
@@ -23,12 +27,28 @@ section#hero .obj-hero {
   max-height: 700px;
 }
 
+section#about .personal-picture {
+  border-radius: 50%;
+  box-shadow: 0 0 160px #e78b6f;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+  background-color: #ff9c7e;
+  transform-origin: center;
+  transform: rotateZ(3deg);
+}
+
 section#about h1.section-title {
   position: relative;
   z-index: 1;
 }
 
 section#about .obj-about {
+  max-width: -webkit-min-content;
+  max-width: -moz-min-content;
+  max-width: min-content;
+  opacity: 0.5;
   left: 0;
   bottom: 0;
   transform: translate(0, 25%) scaleX(-1);
@@ -40,9 +60,10 @@ section#projects {
   position: relative;
   margin-top: 10rem;
   /* background: linear-gradient(to bottom, #ffba7f, #ff9c7e, #42d5b6); */
-  background: linear-gradient(to bottom, var(--color-pastel), #b4a895);
   /* box-shadow: 0 0 128px 32px #ffba7f; */
   padding-bottom: 0;
+  background-color: var(--color-dark-2);
+  color: var(--color-white);
 }
 
 section#projects .project-item {
@@ -58,20 +79,26 @@ section#projects .project-item {
   font-style: italic;
 }
 
-section#projects .obj-wave {
-  width: 200vw;
-  margin-top: -20%;
-  transform: translateY(20%);
-  -webkit-animation: wave 10s ease infinite alternate;
-          animation: wave 10s ease infinite alternate;
-}
-
 section#contact {
   /* background: linear-gradient(to bottom, var(--color-black), #000); */
   background-color: var(--color-dark);
   color: var(--color-pastel);
   text-align: center;
+  padding-top: 0;
   /* overflow: hidden; */
+}
+
+section#contact .obj-wave {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 200vw;
+  -webkit-animation: wave 10s ease infinite alternate;
+          animation: wave 10s ease infinite alternate;
+  max-height: 20rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  background-image: url("../img/wave.svg");
 }
 
 section#contact h1.section-title {
@@ -195,6 +222,8 @@ section#contact .terminal-subtitle {
   opacity: 0.5;
   font-family: monospace;
   transition: opacity 0.2s ease;
+  -webkit-text-decoration: wavy;
+          text-decoration: wavy;
 }
 section#contact .terminal-subtitle:hover {
   opacity: 1;

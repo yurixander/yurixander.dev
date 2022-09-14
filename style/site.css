@@ -24,6 +24,7 @@
   --color-black: #222;
   --color-black-shaded: rgba(34, 34, 34, 0.3);
   --color-dark: #1c1c1c;
+  --color-dark-2: #1b1f24;
   --page-height: calc(100vh - var(--nav-height));
   --z-normal: 0;
   --z-prominent: 1;
@@ -32,7 +33,6 @@
 
 * {
   box-sizing: border-box;
-  cursor: none;
   scroll-behavior: smooth;
 }
 
@@ -44,7 +44,6 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
-  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
   font-family: "Space Grotesk", sans-serif;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -55,11 +54,12 @@ body {
 
 html {
   height: 100vh;
-  /* FIXME: Buggy for reading content in sections. Find an alternative or implement using JS. */
-  /* scroll-snap-type: y mandatory; */
+  font-size: 16px;
 }
 
 body {
+  -ms-scroll-snap-type: y mandatory;
+      scroll-snap-type: y mandatory;
   transition: filter 0.2s ease;
 }
 
@@ -70,7 +70,6 @@ body.blur {
 nav {
   top: 0;
   background-color: var(--color-pastel);
-  z-index: 1;
   padding-top: 2rem;
 }
 
@@ -103,6 +102,10 @@ nav .links a:hover {
 
 nav .links a:active {
   transform: translateY(3px);
+}
+
+nav, footer {
+  scroll-snap-align: start;
 }
 
 h1 {
@@ -138,6 +141,11 @@ p a {
           text-decoration-color: rgba(0, 0, 0, 0.3);
 }
 
+[data-is-dark] p a {
+  -webkit-text-decoration-color: var(--color-white);
+          text-decoration-color: var(--color-white);
+}
+
 button {
   border-radius: 8px;
   padding: 1rem;
@@ -161,6 +169,12 @@ button:active {
 button.special {
   box-shadow: 0 0 64px rgba(34, 34, 34, 0.2);
   z-index: 1;
+}
+
+iframe, .asciicasts {
+  pointer-events: none;
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 .flex {
@@ -313,7 +327,6 @@ section h1.section-title:hover {
 }
 
 footer {
-  scroll-snap-align: start;
   /* BUG: Padding top should be 0, but it seems there's an implicit padding added by scroll snap? */
   padding: 10rem 0 2rem 0;
   width: 100%;
@@ -372,6 +385,13 @@ p.last::after {
 
 p a::before {
   content: "🔗 ";
+}
+
+img {
+  max-width: 100%;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 #cursor {

@@ -28,7 +28,7 @@
     <script src="./script/site.js"></script>
   </head>
   <body>
-    <nav data-animation="intro-slide-bottom">
+    <nav data-scroll-animation="intro-slide-bottom">
       <div class="container flex wrap align-center">
         <a href="#hero" class="logo">yr</a>
         <div class="links flex wrap align-center">
@@ -44,7 +44,8 @@
     </nav>
     <section id="hero" class="fill flex col justify-center">
       <div
-        data-animation="intro-appear"
+        data-scroll-animation="intro-appear"
+        id="scroll-test"
         class="container flex col justify-center v-expand"
       >
         <h1>👋 Hi,<br />I'm Yurixander Ricardo</h1>
@@ -72,6 +73,12 @@
     </div>
     <section id="about" class="fill flex col">
       <div class="container">
+        <img
+          draggable="false"
+          class="personal-picture"
+          alt="A personal picture of mine."
+          src="./img/picture-bg.png"
+        />
         <h1 class="section-title">About Me.</h1>
         <svg data-animation="star-fall" class="obj obj-star">
           <path
@@ -111,12 +118,17 @@
       </div>
       <!-- <a href="#" class="scroll-indicator">click to continue</a> -->
     </section>
-    <div class="container">
-      <hr />
-    </div>
     <!-- TODO: Object should be on top of the horizontal line. -->
-    <section id="projects" class="fill flex col">
+    <section data-is-dark id="projects" class="fill flex col">
       <div class="container">
+        <script
+          id="asciicast-2Mzk3gyAV4Fdsa0g1jHEmEiqg"
+          data-preload="1"
+          data-loop="1"
+          data-autoplay="1"
+          src="https://asciinema.org/a/2Mzk3gyAV4Fdsa0g1jHEmEiqg.js"
+          async
+        ></script>
         <h1 class="section-title">Projects.</h1>
         <!-- TODO: Don't forget to add icons to represent tech stack. Also, a timeline. -->
         <p>
@@ -253,15 +265,16 @@
         </div>
         <!-- <a href="#" class="scroll-indicator">click to continue</a> -->
       </div>
-      <img
+    </section>
+    <section data-is-dark id="contact" class="fill flex justify-center col">
+      <!-- <img
         data-is-dark
         draggable="false"
         class="obj-wave"
         alt="Wave"
         src="./img/wave.svg"
-      />
-    </section>
-    <section data-is-dark id="contact" class="fill flex justify-center col">
+      /> -->
+      <div class="obj-wave"></div>
       <div class="container">
         <h1 class="section-title">Let's get in touch!</h1>
         <!-- <div class="flex col gap align-center justify-center">
@@ -295,20 +308,17 @@
             </span>
           </div>
         </div>
-        <a
-          data-snappable
-          href="mailto:yurixander.ricardo@outlook.com"
-          class="terminal-subtitle"
+        <a data-snappable data-href-email class="terminal-subtitle"
           >&mdash; Or send me an email &mdash;</a
         >
         <img
+          data-parallax
           class="obj obj-contact"
           draggable="false"
           alt="Rocket-ship sprite."
           src="./img/sprite-4.svg"
         />
       </div>
-      <!-- <a href="#" class="scroll-indicator">click to continue</a> -->
     </section>
     <footer data-is-dark>
       <div class="container">
@@ -324,7 +334,7 @@
     </footer>
 
     <!-- Other -->
-    <div class="guide">
+    <div data-dark-sensitive class="guide">
       <a class="dot active" href="#hero">
         <span class="hint">landing</span>
       </a>
@@ -339,6 +349,6 @@
       </a>
     </div>
     <audio data-asset="click" preload="auto" src="./sound/click.mp3"></audio>
-    <div id="cursor"></div>
+    <div data-dark-sensitive id="cursor"></div>
   </body>
 </html>

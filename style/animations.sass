@@ -36,7 +36,7 @@
 
 @keyframes wave
   to
-    transform: translateX(calc(-100vw)) translateY(20%)
+    transform: translateX(50%)
 
 @keyframes star-fall
   from
@@ -66,6 +66,18 @@
   100%
     background-image: linear-gradient(to right, #ffba7f, #ff9c7e, #2f1664, #42d5b6)
 
+@keyframes text-appear
+  from
+    opacity: 0
+    transform: translateY(60px)
+
+  50%
+    opacity: 0.2
+    transform: translateY(40px)
+
+  80%
+    opacity: 0.5
+
 [data-animation="star-fall"]
   pointer-events: all
   top: 0
@@ -80,3 +92,6 @@
 
 [data-animation="intro-slide-bottom"]
   animation: intro-slide-bottom 0.8s ease
+
+[data-animation="text-appear"]
+  animation: text-appear 0.6s ease
