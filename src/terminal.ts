@@ -1,6 +1,8 @@
-type TerminalInputHandler = (terminal: Terminal, commandString: string, name: string, args: string[]) => void
+import {consts} from "./site"
 
-const contactPrompt = (terminal: Terminal) => terminal.prompt("Type your name:", null, (name: string) => {
+export type TerminalInputHandler = (terminal: Terminal, commandString: string, name: string, args: string[]) => void
+
+export const contactPrompt = (terminal: Terminal) => terminal.prompt("Type your name:", null, (name: string) => {
   terminal.prompt("Enter your email:", consts.emailRegex, (email) => {
     terminal.prompt("Message:", null, (message) => {
       terminal.prompt("Confirm send message? [y/n]", consts.confirmationRegex, (confirmation) => {
@@ -30,13 +32,13 @@ const contactPrompt = (terminal: Terminal) => terminal.prompt("Type your name:",
             terminal.addText(response.ok ? "Your message was successfully sent. You will receive a response via e-mail soon. Thank you!" : `Message was sent but the service did not provide a success response: ${response.statusText} (${response.status})`)
           )
           .catch((error) => terminal.addText(`There was an error while sending your message: ${error}`))
-          .finally(Terminal.defaultPrompt)
+          .finally(() => Terminal.defaultPrompt(terminal))
       })
     })
   })
 })
 
-class Terminal {
+export class Terminal {
   static defaultPrompt(terminal: Terminal) {
     terminal.prompt("->", null, (response) => {
       const parts = response.split(" ")
@@ -86,17 +88,19 @@ class Terminal {
   }
 
   $terminal: HTMLElement
-  inputHandler: TerminalInputHandler
   inputBuffer: string
+  inputHandler: TerminalInputHandler
   isReadonly = true
 
-  constructor(state: State, $terminal: HTMLElement) {
+  constructor($terminal: HTMLElement, $beep: HTMLAudioElement) {
     this.$terminal = $terminal
+    this.inputBuffer = ""
+    this.inputHandler = Terminal.defaultCommandHandler
 
     this.$terminal.addEventListener("keydown", (e) => {
       // Ignore input keystrokes when the terminal is marked as read-only.
       if (this.isReadonly) {
-        state.$clickAudio.play()
+        $beep.play()
 
         return
       }
@@ -107,12 +111,13 @@ class Terminal {
 
       // Erase.
       if (e.key === "Backspace") {
+        // FIXME: Select local child.
         // Using query selector fixes the fact that the last child is
         // the text content, and not an HTML node itself.
-        let $lastChild = document.querySelector(".terminal > .content > *:last-child")
+        let $lastChild = this.$terminal.querySelector("> *:last-child")!
 
         if ($lastChild.hasAttribute("data-non-deletable")) {
-          state.$clickAudio.play()
+          $beep.play()
 
           return
         }

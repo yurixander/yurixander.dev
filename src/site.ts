@@ -1,4 +1,6 @@
-const consts = {
+import {contactPrompt, Terminal} from "./terminal"
+
+export const consts = {
   cursorSize: 20,
   emailRegex: /^[^@]+@[^@]+\.[^@]+$/,
   confirmationRegex: /^(y|n)$/,
@@ -48,7 +50,7 @@ type State = {
   $cursor: HTMLElement,
   $clickAudio: HTMLAudioElement,
   $lastActiveGuideDot: HTMLElement,
-  $snapTarget: HTMLElement,
+  $snapTarget: HTMLElement | null,
   $contactSection: HTMLElement,
   $darkSensitives: NodeListOf<HTMLElement>,
   lastScrollHeight: number,
@@ -57,16 +59,18 @@ type State = {
 }
 
 window.addEventListener("load", () => {
+  const $clickAudio = document.querySelector<HTMLAudioElement>("[data-asset='click']")!
+
   let state: State = {
-    $cursor: document.getElementById("cursor"),
-    $clickAudio: document.querySelector("[data-asset='click']") as HTMLAudioElement,
+    $cursor: document.getElementById("cursor")!,
+    $clickAudio,
     // NOTE: This will select the first element matching this selector.
-    $lastActiveGuideDot: document.querySelector(".guide > .dot"),
+    $lastActiveGuideDot: document.querySelector<HTMLElement>(".guide > .dot")!,
     isHoldingClick: false,
     $snapTarget: null,
-    $contactSection: document.getElementById("contact"),
+    $contactSection: document.getElementById("contact")!,
     $darkSensitives: document.querySelectorAll("[data-dark-sensitive]"),
-    contactTerminal: new Terminal(document.querySelector<HTMLElement>(".terminal > .content")),
+    contactTerminal: new Terminal(document.getElementById("contact-terminal")!, $clickAudio),
     lastScrollHeight: 0,
   }
 
@@ -83,8 +87,8 @@ window.addEventListener("load", () => {
 
   setInterval(() => {
     starSpawnLocations.forEach((spawnLocationId) => {
-      const $targetLocation = document.getElementById(spawnLocationId)
-      const $star = document.querySelector(".obj-star").cloneNode(true) as HTMLElement
+      const $targetLocation = document.getElementById(spawnLocationId)!
+      const $star = document.querySelector(".obj-star")!.cloneNode(true) as HTMLElement
       const duration = (Math.random() * 10) + 2
 
       $star.addEventListener("mouseenter", (_e) => {
@@ -100,7 +104,7 @@ window.addEventListener("load", () => {
   }, consts.starSpawnInterval)
 
   document.querySelectorAll("button[data-href]").forEach(($btn) => {
-    $btn.addEventListener("click", () => window.open($btn.getAttribute("data-href"), "_blank"))
+    $btn.addEventListener("click", () => window.open($btn.getAttribute("data-href")!, "_blank"))
   })
 
   document.querySelectorAll("a, button").forEach(($clickable) => {
