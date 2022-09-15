@@ -23,10 +23,10 @@ type Vector2 = {
   y: number
 }
 
-type Dimensions = {
-  width: number,
-  height: number
-}
+// type Dimensions = {
+//   width: number,
+//   height: number
+// }
 
 function calculateCenterPoint(position: Vector2, size: number): Vector2 {
   return {
@@ -80,7 +80,7 @@ window.addEventListener("load", () => {
   console.log(`👋 Hi! Interested in looking at the source code? Go ahead! If you have any questions or concerns about this site, feel free to reach me at ${atob(consts.email)}.`)
 
   contactPrompt(state.contactTerminal)
-  state.contactTerminal.isReadonly = false
+  state.contactTerminal.isReadOnly = false
 
   // Spawn stars.
   const starSpawnLocations = ["contact"]

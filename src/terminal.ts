@@ -87,93 +87,97 @@ export class Terminal {
     Terminal.defaultPrompt(terminal)
   }
 
-  $terminal: HTMLElement
+  readonly $terminal: HTMLElement
   inputBuffer: string
   inputHandler: TerminalInputHandler
-  isReadonly = true
+  isReadOnly = true
+
+  private readonly $beep: HTMLAudioElement
 
   constructor($terminal: HTMLElement, $beep: HTMLAudioElement) {
     this.$terminal = $terminal
     this.inputBuffer = ""
     this.inputHandler = Terminal.defaultCommandHandler
+    this.$beep = $beep
+    this.$terminal.addEventListener("keydown", this.handleKey.bind(this))
+  }
 
-    this.$terminal.addEventListener("keydown", (e) => {
-      // Ignore input keystrokes when the terminal is marked as read-only.
-      if (this.isReadonly) {
-        $beep.play()
+  private handleKey(event: KeyboardEvent) {
+    // Ignore input keystrokes when the terminal is marked as read-only.
+    if (this.isReadOnly) {
+      this.$beep.play()
 
-        return
-      }
+      return
+    }
 
-      // REVIEW: Is this still required? It's blocking alt-tabs and so on when writing to a terminal.
-      // Prevents from scrolling when space is pressed.
-      // e.preventDefault()
+    // REVIEW: Is this still required? It's blocking alt-tabs and so on when writing to a terminal.
+    // Prevents from scrolling when space is pressed.
+    event.preventDefault()
 
-      // Erase.
-      if (e.key === "Backspace") {
-        // FIXME: Select local child.
-        // Using query selector fixes the fact that the last child is
-        // the text content, and not an HTML node itself.
-        let $lastChild = this.$terminal.querySelector("> *:last-child")!
+    // Erase.
+    if (event.key === "Backspace") {
+      // FIXME: Select local child.
+      // Using query selector fixes the fact that the last child is
+      // the text content, and not an HTML node itself.
+      let $lastChild = this.$terminal.querySelector("> *:last-child")!
 
-        if ($lastChild.hasAttribute("data-non-deletable")) {
-          $beep.play()
-
-          return
-        }
-
-        this.inputBuffer = this.inputBuffer.substring(0, this.inputBuffer.length - 1)
-
-        $lastChild.remove()
+      if ($lastChild.hasAttribute("data-non-deletable")) {
+        this.$beep.play()
 
         return
       }
-      // Submit command.
-      else if (e.key === "Enter") {
-        const commandString = this.inputBuffer.trim()
 
-        // Ignore empty input.
-        if (commandString === "")
-          return
+      this.inputBuffer = this.inputBuffer.substring(0, this.inputBuffer.length - 1)
 
-        this.inputBuffer = ""
+      $lastChild.remove()
 
-        const parts = commandString.split(" ")
-        const name = parts[0]
-        const args = parts.slice(1)
+      return
+    }
+    // Submit command.
+    else if (event.key === "Enter") {
+      const commandString = this.inputBuffer.trim()
 
-        this.appendNewline()
-
-        if (this.inputHandler !== null) {
-          const handler = this.inputHandler
-
-          this.inputHandler = Terminal.defaultCommandHandler
-          handler(this, commandString, name, args)
-        }
-
+      // Ignore empty input.
+      if (commandString === "")
         return
+
+      this.inputBuffer = ""
+
+      const parts = commandString.split(" ")
+      const name = parts[0]
+      const args = parts.slice(1)
+
+      this.appendNewline()
+
+      if (this.inputHandler !== null) {
+        const handler = this.inputHandler
+
+        this.inputHandler = Terminal.defaultCommandHandler
+        handler(this, commandString, name, args)
       }
-      // Ignore other keys.
-      else if (e.key.length > 1)
-        return
 
-      // At this point, we can register the key to the input buffer.
-      this.inputBuffer += e.key
+      return
+    }
+    // Ignore other keys.
+    else if (event.key.length > 1)
+      return
 
-      let $character = document.createElement("span")
+    // At this point, we can register the key to the input buffer.
+    this.inputBuffer += event.key
 
-      // Edge case for space.
-      if (e.key === " ") {
-        this.appendSpace(true)
+    let $character = document.createElement("span")
 
-        return
-      }
-      else
-        $character.textContent = e.key
+    // Edge case for space.
+    if (event.key === " ") {
+      this.appendSpace(true)
 
-      this.$terminal.appendChild($character)
-      this.scroll()
-    })
+      return
+    }
+    else
+      $character.textContent = event.key
+
+    this.$terminal.appendChild($character)
+    this.scroll()
   }
 
   clear() {
@@ -241,27 +245,27 @@ export class Terminal {
   }
 }
 
-class Timeline {
-  terminal: Terminal
-  actions: Promise<void>[]
+// class _Timeline {
+//   terminal: Terminal
+//   actions: Promise<void>[]
 
-  constructor(terminal: Terminal) {
-    this.terminal = terminal
-    this.actions = []
-  }
+//   constructor(terminal: Terminal) {
+//     this.terminal = terminal
+//     this.actions = []
+//   }
 
-  type(commandString: string): Timeline {
-    this.actions.push(new Promise<void>((resolve: () => void) => {
-      commandString.split("").forEach((char: string) => {
-        this.terminal.addText(char, false, false)
-        setTimeout(() => resolve(), consts.terminalKeystrokeInterval)
-      })
-    }))
+//   type(commandString: string): _Timeline {
+//     this.actions.push(new Promise<void>((resolve: () => void) => {
+//       commandString.split("").forEach((char: string) => {
+//         this.terminal.addText(char, false, false)
+//         setTimeout(() => resolve(), consts.terminalKeystrokeInterval)
+//       })
+//     }))
 
-    return this
-  }
+//     return this
+//   }
 
-  run() {
-    Promise.all(this.actions)
-  }
-}
+//   run() {
+//     Promise.all(this.actions)
+//   }
+// }

@@ -51,7 +51,7 @@ html
   font-size: 16px
 
 body
-  scroll-snap-type: y mandatory // BUG: Buggy for reading content in sections.Find an alternative or implement using JS.s
+  scroll-snap-type: y proximity // BUG: Buggy for reading content in sections.Find an alternative or implement using JS.s
   transition: filter 0.2s ease
 
 body.blur
@@ -197,7 +197,10 @@ iframe, .asciicasts
 
   &.meta-dark
     & > .dot
-      background-color: var(--color-white)
+      background-color: var(--color-pastel)
+
+    & > .dot.active
+      background-color: var(--color-pastel)
 
   & > .dot
     display: block
@@ -326,6 +329,7 @@ p
   line-height: 160%
   font-size: 2rem
   user-select: text
+  scroll-snap-align: center
 
 p:not(:last-child)
   margin-bottom: 1rem
@@ -356,7 +360,7 @@ img
   border-radius: 50%
   background-color: var(--color-black)
   opacity: 0.3
-  transition: all 0.1s linear, width 0.2s ease, height 0.2s ease
+  transition: all 0.05s linear, width 0.2s ease, height 0.2s ease
   transform-origin: center
   pointer-events: none
   will-change: left, top
