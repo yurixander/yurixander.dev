@@ -1,4 +1,4 @@
-import {contactPrompt, Terminal} from "./terminal"
+import { contactPrompt, Terminal, Timeline } from './terminal';
 
 export const consts = {
   cursorSize: 20,
@@ -15,7 +15,8 @@ export const consts = {
   // This helps prevent crawler bots, and thus possible spam.
   email: "eXVyaXhhbmRlci5yaWNhcmRvQG91dGxvb2suY29t",
   starSpawnInterval: 500,
-  terminalKeystrokeInterval: 100
+  terminalKeystrokeIntervalMin: 100,
+  terminalKeystrokeIntervalMax: 200
 }
 
 type Vector2 = {
@@ -55,7 +56,8 @@ type State = {
   $darkSensitives: NodeListOf<HTMLElement>,
   lastScrollHeight: number,
   contactTerminal: Terminal,
-  isHoldingClick: boolean
+  isHoldingClick: boolean,
+  compilerShowcaseTerminal: Terminal
 }
 
 window.addEventListener("load", () => {
@@ -70,7 +72,8 @@ window.addEventListener("load", () => {
     $snapTarget: null,
     $contactSection: document.getElementById("contact")!,
     $darkSensitives: document.querySelectorAll("[data-dark-sensitive]"),
-    contactTerminal: new Terminal(document.getElementById("contact-terminal")!, $clickAudio),
+    contactTerminal: new Terminal(document.querySelector("#contact-terminal > .content")!, $clickAudio),
+    compilerShowcaseTerminal: new Terminal(document.getElementById("compiler-showcase-terminal")!, $clickAudio),
     lastScrollHeight: 0,
   }
 
@@ -81,6 +84,13 @@ window.addEventListener("load", () => {
 
   contactPrompt(state.contactTerminal)
   state.contactTerminal.isReadOnly = false
+
+  new Timeline(state.compilerShowcaseTerminal)
+    .prompt()
+    .type("hello there, this is a very long message. thanks for reading it!")
+    .write("THIS IS AN OUTPUT")
+    .repeat()
+    .run()
 
   // Spawn stars.
   const starSpawnLocations = ["contact"]

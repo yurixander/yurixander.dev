@@ -40,7 +40,7 @@ export const contactPrompt = (terminal: Terminal) => terminal.prompt("Type your 
 
 export class Terminal {
   static defaultPrompt(terminal: Terminal) {
-    terminal.prompt("->", null, (response) => {
+    terminal.prompt("⇢", null, (response) => {
       const parts = response.split(" ")
       const name = parts[0]
       const args = parts.slice(1)
@@ -99,7 +99,7 @@ export class Terminal {
     this.inputBuffer = ""
     this.inputHandler = Terminal.defaultCommandHandler
     this.$beep = $beep
-    this.$terminal.addEventListener("keydown", this.handleKey.bind(this))
+    this.$terminal.addEventListener("keyup", (e) => this.handleKey(e))
   }
 
   private handleKey(event: KeyboardEvent) {
@@ -116,12 +116,11 @@ export class Terminal {
 
     // Erase.
     if (event.key === "Backspace") {
-      // FIXME: Select local child.
       // Using query selector fixes the fact that the last child is
       // the text content, and not an HTML node itself.
-      let $lastChild = this.$terminal.querySelector("> *:last-child")!
+      let $lastChild = this.$terminal.lastElementChild
 
-      if ($lastChild.hasAttribute("data-non-deletable")) {
+      if ($lastChild === null || $lastChild.hasAttribute("data-non-deletable")) {
         this.$beep.play()
 
         return
@@ -190,6 +189,8 @@ export class Terminal {
   }
 
   addText(text: string, isBold: boolean = false, includeNewline: boolean = true): void {
+    // TODO: Must special case spaces.
+
     let $text = document.createElement(isBold ? "strong" : "span")
 
     $text.toggleAttribute("data-non-deletable")
@@ -245,27 +246,81 @@ export class Terminal {
   }
 }
 
-// class _Timeline {
-//   terminal: Terminal
-//   actions: Promise<void>[]
+export class Timeline {
+  terminal: Terminal
+  actions: Promise<void>[]
+  isRepeating: boolean
 
-//   constructor(terminal: Terminal) {
-//     this.terminal = terminal
-//     this.actions = []
-//   }
+  constructor(terminal: Terminal) {
+    this.terminal = terminal
+    this.actions = []
+    this.isRepeating = false
+  }
 
-//   type(commandString: string): _Timeline {
-//     this.actions.push(new Promise<void>((resolve: () => void) => {
-//       commandString.split("").forEach((char: string) => {
-//         this.terminal.addText(char, false, false)
-//         setTimeout(() => resolve(), consts.terminalKeystrokeInterval)
-//       })
-//     }))
+  prompt(): Timeline {
+    this.actions.push(new Promise<void>((resolve: () => void) => {
+      this.terminal.addText("->", true, false)
+      this.terminal.appendSpace()
+      resolve()
+    }))
 
-//     return this
-//   }
+    return this
+  }
 
-//   run() {
-//     Promise.all(this.actions)
-//   }
-// }
+  write(text: string): Timeline {
+    this.actions.push(new Promise<void>((resolve: () => void) => {
+      this.terminal.addText(text, false, true)
+      this.terminal.appendSpace()
+      resolve()
+    }))
+
+    return this
+  }
+
+  type(text: string): Timeline {
+    if (text.trim() === "")
+      return
+
+    this.actions.push(new Promise<void>((resolve: () => void) => {
+      let characterIndex = -1
+
+      const nextTimeoutTime = () =>
+        Math.random() * consts.terminalKeystrokeIntervalMax + consts.terminalKeystrokeIntervalMin
+
+      const nextKeystrokeTimeout = () => setTimeout(() => {
+        characterIndex += 1
+
+        if (characterIndex >= text.length) {
+          // if (this.isRepeating) {
+          //   setTimeout(() => {
+          //     this.terminal.clear()
+          //     characterIndex = -1
+          //     nextKeystrokeTimeout()
+          //   }, 4000)
+
+          //   return
+          // }
+
+          return resolve()
+        }
+
+        this.terminal.addText(text[characterIndex], false, false)
+        nextKeystrokeTimeout()
+      }, nextTimeoutTime())
+
+      nextKeystrokeTimeout()
+    }))
+
+    return this
+  }
+
+  repeat(): Timeline {
+    this.isRepeating = true
+
+    return this
+  }
+
+  run() {
+    Promise.all(this.actions)
+  }
+}

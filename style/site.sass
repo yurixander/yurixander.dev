@@ -12,7 +12,6 @@
   font-style: italic
 
 :root
-  --nav-height: 112.2px
   --responsive-padding: 2rem
   --content-width: calc(1280px + var(--responsive-padding))
   --base-font-size: 18px
@@ -24,19 +23,25 @@
   --color-black-shaded: rgba(34, 34, 34, 0.3)
   --color-dark: #1c1c1c
   --color-dark-2: #1b1f24
-  --page-height: calc(100vh - var(--nav-height))
+  --color-purple: #2f1664
+  --color-purple-dark: #1f0e42
+  --color-purple-darker: #1d0e3c
+  // --color-purple-darkest: #0d061c
+  --color-purple-darkest: #180b33
+  --color-green: #42d5b6
+  --shade-diff: 30%
   --z-normal: 0
   --z-prominent: 1
   --z-cursor: 3
 
 *
   box-sizing: border-box
-  // cursor: none
+  cursor: none
   scroll-behavior: smooth
 
 html,
 body
-  background-color: var(--color-pastel)
+  background-color: var(--color-purple-darkest)
   font-size: var(--base-font-size)
   margin: 0
   padding: 0
@@ -58,15 +63,10 @@ body.blur
   filter: blur(8px)
 
 nav
-  top: 0
   background-color: var(--color-pastel)
   padding-top: 2rem
 
-nav a
-  text-transform: lowercase
-
 nav .logo
-  margin-right: auto
   font-family: Lobster, sans-serif
   font-size: 3rem
   font-weight: bolder
@@ -75,17 +75,18 @@ nav .logo
   padding: 0.2rem 1rem
 
 nav .links
-  gap: 2rem
+  gap: 1.5rem
 
-nav .links a
+nav .links .link
   padding: 10px
   transition: transform 0.1s ease
-
-nav .links a:hover
-  transform: translateY(-5px)
+  text-decoration: none
 
 nav .links a:active
   transform: translateY(3px)
+
+nav .links a.social-icon
+  font-size: 1.5rem
 
 nav, footer
   scroll-snap-align: start
@@ -105,29 +106,25 @@ h2
   margin: 0
 
 a
+  position: relative
   color: inherit
   text-decoration: none
-
-a:hover,
-p a
-  text-decoration: underline
-  text-decoration-thickness: 2px
-  text-decoration-style: wavy
-  text-decoration-color: rgba(0, 0, 0, 0.3)
+  z-index: 1
 
 [data-is-dark] p a
   text-decoration-color: var(--color-white)
 
 button
-  border-radius: 8px
+  border-radius: 16px
   padding: 1rem
   border: 2px solid var(--color-black)
-  border-bottom-width: 6px
+  border-bottom-width: 8px
   background-color: var(--color-pastel)
   transform-origin: center
   transition: transform 0.1s ease, opacity 0.1s ease
   font-size: 1rem
-  text-transform: lowercase
+  font-weight: bold
+  font-family: inherit
   white-space: nowrap
 
 button:active
@@ -151,6 +148,12 @@ iframe, .asciicasts
   &.gap
     gap: 1rem
 
+  &.gap-2x
+    gap: 2rem
+
+  &.gap-1-5x
+    gap: 1.5rem
+
   &.wrap
     flex-wrap: wrap
 
@@ -169,6 +172,35 @@ iframe, .asciicasts
 
   &.justify-center
     justify-content: center
+
+.dropdown-parent
+  position: relative !important
+  display: block
+
+.dropdown-parent .dropdown
+  pointer-events: none
+  opacity: 0
+  display: flex
+  border: 2px solid var(--color-black)
+  border-radius: 16px
+  animation: slide-in 0.4s ease
+  padding: 8px
+  min-width: 250px // TODO: Not responsive.Should be `max-width` but clashes with flex display.
+  border-bottom-width: 8px
+  flex-direction: column
+  position: absolute
+  // top: calc(100% + 1rem)
+  top: 100%
+  left: 50%
+  transform: translateX(-50%)
+  z-index: var(--z-prominent)
+
+  & > a
+    padding: 8px
+
+.dropdown-parent:hover .dropdown
+  pointer-events: all
+  opacity: 1
 
 .container
   max-width: var(--content-width)
@@ -210,6 +242,7 @@ iframe, .asciicasts
     background-color: var(--color-black-shaded)
     transform-origin: center
     position: relative
+    backdrop-filter: invert(0.5)
 
   & > .dot.active
     background-color: var(--color-black)
@@ -279,11 +312,21 @@ iframe, .asciicasts
 // .meta-hidden
 //   opacity: 0
 
+.push-right
+  margin-right: auto
+
+.push-left
+  margin-left: auto
+
+.anchor
+  position: relative
+
 section
   display: block
   position: relative
   scroll-snap-align: start
-  padding: 5rem 0
+  padding: 10rem 0
+  padding-top: 20rem
   min-height: 100vh
 
 section h1.section-title
@@ -301,10 +344,11 @@ section h1.section-title:hover
 
 footer
   /* BUG: Padding top should be 0, but it seems there's an implicit padding added by scroll snap? */
-  padding: 10rem 0 2rem 0
+  padding: 4rem 0 2rem 0
   width: 100%
-  background-color: var(--color-dark)
+  background-color: var(--color-purple-darkest)
   color: var(--color-white)
+  position: relative
 
 footer .disclaimer
   display: block
@@ -317,6 +361,17 @@ footer .disclaimer > .heart
   display: inline-block
   transform-origin: center
   animation: heartbeat 0.9s ease infinite
+
+footer .social
+  margin-top: 2rem
+
+footer .social a
+  opacity: 0.1
+  font-size: 2.5rem
+  transition: opacity 0.2s ease
+
+footer .social a:hover
+  opacity: 0.5
 
 hr
   opacity: 0.2
@@ -337,6 +392,8 @@ p:not(:last-child)
 p a
   white-space: nowrap
   font-weight: medium
+  text-decoration-thickness: 2px
+  text-decoration-style: wavy
 
 p:last-of-type::after,
 p.last::after
@@ -345,8 +402,12 @@ p.last::after
   letter-spacing: 1px
   margin-left: 1ch
 
-p a::before
-  content: "🔗 "
+p a::after
+  content: "\f360"
+  margin-left: 0.5ch
+  font-family: "Font Awesome 6 Free"
+  font-weight: 600
+  opacity: 1
 
 img
   max-width: 100%

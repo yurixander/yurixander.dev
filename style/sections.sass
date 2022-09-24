@@ -21,6 +21,14 @@ section#hero .obj-hero
   margin-top: 5rem
   max-height: 700px
 
+$shade-diff: 30%
+
+section#about
+  // background: radial-gradient(#42d5b6, darken(#42d5b6, $shade-diff))
+  background: linear-gradient(to bottom, var(--color-pastel), var(--color-purple-dark))
+  color: #fff
+  padding-bottom: 30rem
+
 section#about .personal-picture
   border-radius: 50%
   // box-shadow: 2px 2px 16px #8a8071
@@ -39,22 +47,21 @@ section#about h1.section-title
   z-index: 1
 
 section#about .obj-about
-  max-width: min-content
-  opacity: 0.5
-  left: 0
-  bottom: 0
-  transform: translate(0, 25%) scaleX(-1)
+  max-width: min-contentpaddingeX(-1)
   animation: slow-spin 200s ease infinite
 
 section#projects
+  border-radius: 48px
+  border-bottom-left-radius: 0
+  border-bottom-right-radius: 0
   scroll-snap-align: none
   position: relative
-  margin-top: 10rem
+  margin-top: -48px
   /* background: linear-gradient(to bottom, #ffba7f, #ff9c7e, #42d5b6); */
   // background: linear-gradient(to bottom, var(--color-pastel), #b4a895)
   /* box-shadow: 0 0 128px 32px #ffba7f; */
-  padding-bottom: 0
-  background-color: var(--color-dark-2)
+  // background-color: var(--color-dark-2)
+  background: radial-gradient(var(--color-purple), var(--color-purple-dark))
   color: var(--color-white)
 
 section#projects .project-item
@@ -71,10 +78,9 @@ section#projects .project-item
 
 section#contact
   /* background: linear-gradient(to bottom, var(--color-black), #000); */
-  background-color: var(--color-dark)
+  background-color: var(--color-purple-darker)
   color: var(--color-pastel)
   text-align: center
-  padding-top: 0
   /* overflow: hidden; */
 
 section#contact .obj-wave
@@ -206,6 +212,3 @@ section#contact .obj-contact
     font-family: monospace
     transition: opacity 0.2s ease
     text-decoration: wavy // FIXME: Not working for some reason.
-
-    &:hover
-      opacity: 1
