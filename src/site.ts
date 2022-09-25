@@ -2,6 +2,8 @@ import { contactPrompt, Terminal, Timeline } from './terminal';
 
 export const consts = {
   cursorSize: 20,
+  cursorSnapPadding: 10,
+  cursorSnapWiggleRoom: 10,
   emailRegex: /^[^@]+@[^@]+\.[^@]+$/,
   confirmationRegex: /^(y|n)$/,
   terminalCommands: [
@@ -24,15 +26,22 @@ type Vector2 = {
   y: number
 }
 
-// type Dimensions = {
-//   width: number,
-//   height: number
-// }
+type Dimensions = {
+  width: number,
+  height: number
+}
 
 function calculateCenterPoint(position: Vector2, size: number): Vector2 {
   return {
     x: position.x - size / 2,
     y: position.y - size / 2
+  }
+}
+
+function calculateCenterPointWithDimensions(position: Vector2, dimensions: Dimensions): Vector2 {
+  return {
+    x: position.x + dimensions.width / 2,
+    y: position.y + dimensions.height / 2
   }
 }
 
@@ -45,6 +54,18 @@ function isInViewport($element: HTMLElement): boolean {
     rect.x <= (window.innerWidth || document.documentElement.clientWidth) &&
     rect.y <= (window.innerHeight || document.documentElement.clientHeight)
   )
+}
+
+function getCursorPosition($cursor) {
+  // NOTE: Cursor position should be treated like a point.
+  return $cursor.getBoundingClientRect()
+}
+
+function getElementDimensions($element) {
+  return {
+    width: $element.clientWidth || $element.offsetWidth,
+    height: $element.clientHeight || $element.offsetHeight
+  }
 }
 
 type State = {
@@ -102,7 +123,7 @@ window.addEventListener("load", () => {
       const duration = (Math.random() * 10) + 2
 
       $star.addEventListener("mouseenter", (_e) => {
-        // TODO: Apply velocity in random direction?
+        // TODO: Apply velocity in random direction?$snappable.clientHeight || $snappable.offsetHeight
       })
 
       $star.style.animationDuration = `${duration}s`
@@ -142,15 +163,49 @@ window.addEventListener("load", () => {
 
   // CONSIDER: Default to all links, then use opt-out?
   document.querySelectorAll<HTMLElement>("[data-snappable], nav a, p a, button").forEach(($snappable) => {
-    $snappable.addEventListener("mouseenter", () => {
-      // BUG: When you scroll a section, the pointer snap is misplaced.
+    $snappable.addEventListener("mousemove", (e) => {
       const snappablePosition = $snappable.getBoundingClientRect()
+      const snappableDimensions = getElementDimensions($snappable)
+      const centerPoint = calculateCenterPointWithDimensions(snappablePosition, snappableDimensions)
+
+      const centerDiff = {
+        x: (centerPoint.x - e.clientX) * -1,
+        y: (centerPoint.y - e.clientY) * -1
+      }
+
+      console.log("cursorPos", state.$cursor.offsetLeft, state.$cursor.offsetTop)
+
+      const centerDiffPercentage = {
+        x: centerDiff.x / (snappableDimensions.width / 2),
+        y: centerDiff.y / (snappableDimensions.height / 2)
+      }
+
+      const nextPosition = {
+        x: snappablePosition.x + (centerDiffPercentage.x * consts.cursorSnapWiggleRoom),
+        y: snappablePosition.y + (centerDiffPercentage.y *  consts.cursorSnapWiggleRoom)
+        // x: snappablePosition.x - consts.cursorSnapWiggleRoom / 2 + (centerDiffPercentage.x * consts.cursorSnapWiggleRoom),
+        // y: snappablePosition.y - consts.cursorSnapWiggleRoom / 2 + (centerDiffPercentage.y *  consts.cursorSnapWiggleRoom)
+      }
+
+      // TODO: Temporary. Debugging.
+      console.log("====================")
+      console.log("centerPoint", centerPoint)
+      console.log("centerDiff", centerDiff)
+      console.log("centerDiffPercentage", centerDiffPercentage)
+      console.log("nextPosition", nextPosition)
+
+      state.$cursor.style.left = `${nextPosition.x}px`
+      state.$cursor.style.top = `${nextPosition.y}px`
+    })
+
+    $snappable.addEventListener("mouseenter", () => {
+      const snappableDimensions = getElementDimensions($snappable)
+      const nextWidth = snappableDimensions.width + consts.cursorSnapPadding * 2
+      const nextHeight = snappableDimensions.height + consts.cursorSnapPadding * 2
 
       state.$snapTarget = $snappable
-      state.$cursor.style.left = `${snappablePosition.x}px`
-      state.$cursor.style.top = `${snappablePosition.y}px`
-      state.$cursor.style.width = `${$snappable.clientWidth || $snappable.offsetWidth}px`
-      state.$cursor.style.height = `${$snappable.clientHeight || $snappable.offsetHeight}px`
+      state.$cursor.style.width = `${nextWidth}px`
+      state.$cursor.style.height = `${nextHeight}px`
       state.$cursor.classList.add("snapped")
     })
 

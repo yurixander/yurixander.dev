@@ -29,6 +29,8 @@
   // --color-purple-darkest: #0d061c
   --color-purple-darkest: #180b33
   --color-green: #42d5b6
+  --color-orange-dark: #ff9c7e
+  --color-orange-light: #ffba7f
   --shade-diff: 30%
   --z-normal: 0
   --z-prominent: 1
@@ -75,10 +77,9 @@ nav .logo
   padding: 0.2rem 1rem
 
 nav .links
-  gap: 1.5rem
+  gap: 3rem
 
 nav .links .link
-  padding: 10px
   transition: transform 0.1s ease
   text-decoration: none
 
@@ -91,19 +92,23 @@ nav .links a.social-icon
 nav, footer
   scroll-snap-align: start
 
-h1
-  font-size: 5rem
+h1, h2, h3, h4
   margin: 0
 
-h1.margin
-  margin-bottom: 1rem
+h1
+  font-size: 5rem
 
 h2
   font-size: 4rem
   font-weight: normal
 
-h2
-  margin: 0
+h3
+  font-size: 3rem
+  font-weight: normal
+
+h4
+  font-size: 2rem
+  font-weight: normal
 
 a
   position: relative
@@ -112,9 +117,10 @@ a
   z-index: 1
 
 [data-is-dark] p a
-  text-decoration-color: var(--color-white)
+  text-decoration-color: var(--color-pastel)
 
 button
+  display: block
   border-radius: 16px
   padding: 1rem
   border: 2px solid var(--color-black)
@@ -126,6 +132,9 @@ button
   font-weight: bold
   font-family: inherit
   white-space: nowrap
+
+  &.orange
+    background: linear-gradient(var(--color-orange-dark), var(--color-orange-light))
 
 button:active
   transform: translateY(3px)
@@ -141,6 +150,16 @@ iframe, .asciicasts
   pointer-events: none
   border-radius: 16px
   overflow: hidden
+
+.fade
+  opacity: 0.5
+  transition: opacity 0.2s ease
+
+  &:hover
+    opacity: 0.8
+
+.margin
+  margin-bottom: 1rem
 
 .flex
   display: flex
@@ -214,7 +233,15 @@ iframe, .asciicasts
 .obj
   pointer-events: none
   position: absolute
+  left: 0
   z-index: 0
+
+  .bottom
+    bottom: 0
+
+  .right
+    left: unset
+    right: 0
 
 .guide
   position: fixed
@@ -346,8 +373,9 @@ footer
   /* BUG: Padding top should be 0, but it seems there's an implicit padding added by scroll snap? */
   padding: 4rem 0 2rem 0
   width: 100%
+  border-top: 1px solid #000
   background-color: var(--color-purple-darkest)
-  color: var(--color-white)
+  color: var(--color-pastel)
   position: relative
 
 footer .disclaimer
@@ -436,7 +464,7 @@ img
     opacity: 0
 
   &.meta-dark
-    background-color: var(--color-white)
+    background-color: var(--color-pastel)
     box-shadow: 0 0 128px 64px rgba(255, 255, 255, 0.5)
 
   &.snapped

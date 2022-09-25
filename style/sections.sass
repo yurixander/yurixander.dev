@@ -1,10 +1,12 @@
 section#hero
-  background-color: var(--color-pastel)
-  padding-top: 5rem
+  // background-color: var(--color-pastel)
+  background: linear-gradient(to bottom, var(--color-pastel), #dbd6cb)
+  padding-top: 10rem
   min-height: 100vh
+  font-size: 3rem
 
-section#hero h2 // TODO: Need to eliminate this special case.
-  font-size: 5rem
+section#hero .name
+  font-size: 8rem
 
 section#hero > .container
   font-weight: bold
@@ -15,17 +17,19 @@ section#hero > .container .caret
   transform: translateY(10px)
   width: 1.5rem
   border: 3px solid var(--color-black)
+  margin-left: -0.3ch
   animation: phase 0.8s linear infinite alternate
 
 section#hero .obj-hero
   margin-top: 5rem
   max-height: 700px
+  width: 100%
 
 $shade-diff: 30%
 
 section#about
   // background: radial-gradient(#42d5b6, darken(#42d5b6, $shade-diff))
-  background: linear-gradient(to bottom, var(--color-pastel), var(--color-purple-dark))
+  // background: linear-gradient(to bottom, var(--color-pastel), var(--color-purple-dark))
   color: #fff
   padding-bottom: 30rem
 
