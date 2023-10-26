@@ -1,17 +1,21 @@
 @charset "UTF-8";
+
 @font-face {
   font-family: "Lobster", sans-serif;
   src: url("./fonts/Lobster-Regular.ttf");
 }
+
 @font-face {
   font-family: "Space Grotesk", sans-serif;
   src: url("./fonts/Space-Grotesk.ttf");
 }
+
 @font-face {
   font-family: "Gooper", sans-serif;
   src: url("./fonts/Gooper-BoldItalic.ttf");
   font-style: italic;
 }
+
 :root {
   --nav-height: 112.2px;
   --responsive-padding: 2rem;
@@ -44,12 +48,11 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
-  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
   font-family: "Space Grotesk", sans-serif;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   overflow-x: hidden;
 }
 
@@ -133,9 +136,9 @@ p a {
   text-decoration: underline;
   text-decoration-thickness: 2px;
   -webkit-text-decoration-style: wavy;
-          text-decoration-style: wavy;
+  text-decoration-style: wavy;
   -webkit-text-decoration-color: rgba(0, 0, 0, 0.3);
-          text-decoration-color: rgba(0, 0, 0, 0.3);
+  text-decoration-color: rgba(0, 0, 0, 0.3);
 }
 
 button {
@@ -217,6 +220,7 @@ button.special {
   align-items: center;
   gap: 1.5rem;
 }
+
 .guide > .dot {
   display: block;
   border-radius: 50%;
@@ -226,12 +230,14 @@ button.special {
   transform-origin: center;
   position: relative;
 }
+
 .guide > .dot.active {
   background-color: var(--color-black);
   width: 15px;
   height: 30px;
   border-radius: 8px;
 }
+
 .guide > .dot > .hint {
   background-color: var(--color-black);
   color: var(--color-pastel);
@@ -245,6 +251,7 @@ button.special {
   pointer-events: none;
   transition: opacity 0.2s ease;
 }
+
 .guide > .dot:hover > .hint {
   opacity: 1;
 }
@@ -257,7 +264,7 @@ button.special {
   font-weight: bold;
   transition: all 2s ease;
   -webkit-animation: rainbow-text 0.8s ease infinite;
-          animation: rainbow-text 0.8s ease infinite;
+  animation: rainbow-text 0.8s ease infinite;
 }
 
 .remarks {
@@ -269,21 +276,25 @@ button.special {
   transition: all 0.2s ease;
   font-size: 2rem;
 }
+
 .remarks:hover {
   opacity: 1;
   filter: none;
 }
+
 .remarks .remarks-title {
   display: inline-block;
   font-size: 70%;
   margin-bottom: 1rem;
 }
+
 .remarks .tech-stack > a {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0.5rem;
 }
+
 .remarks .tech-stack .tech-icon {
   display: inline-block;
   max-height: 5rem;
@@ -333,7 +344,7 @@ footer .disclaimer > .heart {
   display: inline-block;
   transform-origin: center;
   -webkit-animation: heartbeat 0.9s ease infinite;
-          animation: heartbeat 0.9s ease infinite;
+  animation: heartbeat 0.9s ease infinite;
 }
 
 hr {
@@ -346,11 +357,10 @@ p {
   position: relative;
   z-index: 1;
   line-height: 160%;
-  font-size: 2rem;
   -webkit-user-select: text;
-     -moz-user-select: text;
-      -ms-user-select: text;
-          user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
 }
 
 p:not(:last-child) {
@@ -409,4 +419,4 @@ p a::before {
 
 [data-parallax] {
   transition: left 1s ease, top 1s ease;
-}/*# sourceMappingURL=site.css.map */
+} /*# sourceMappingURL=site.css.map */
