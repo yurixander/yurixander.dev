@@ -1,0 +1,57 @@
+@keyframes font-highlight {
+  0% {
+    background-position: -720px 0;
+  }
+
+  100% {
+    background-position: 720px 0;
+  }
+}
+
+:root {
+  --font-color: #999;
+  --font-highlight: white;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #050407;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  user-select: none;
+}
+
+h1 {
+  font-weight: 500;
+  text-transform: uppercase;
+  background: linear-gradient(
+        90deg,
+        var(--font-color) 0% 40%,
+        var(--font-highlight) 50%,
+        var(--font-color) 60% 100%
+      )
+      no-repeat,
+    var(--font-color);
+  animation: font-highlight 5s infinite cubic-bezier(0.4, 0.9, 0.9, 0.1);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+span {
+  line-height: 160%;
+  font-weight: 100;
+}
+
+a {
+  color: inherit;
+}
